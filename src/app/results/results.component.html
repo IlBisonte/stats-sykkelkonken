@@ -1,0 +1,104 @@
+
+<div class="flex-container">
+<!-- <dx-box  direction="row" class="flex-container " width="100%"> -->
+  <!-- <dxi-item [baseSize]="600" class="flex-container-col" style="margin-right: 20px"> -->
+  
+    <div class="flex-container-col">
+    <dx-data-grid id="gridContainer "
+        [dataSource]="dataSourceCompetitionTeams"
+        keyExpr="CompetitionTeamId"
+        [showBorders]="true"
+        [hoverStateEnabled]="true"
+        [selectedRowKeys]="[]"
+        [allowColumnResizing]="true"
+        (onRowClick)="competitionTeamClicked($event, riders)"
+        [height]="800"
+        (onRowPrepared)="onRowPrepared($event)"
+        [columnHidingEnabled]="true">
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-export [enabled]="true" fileName="ResultaterSykkelkonken" ></dxo-export>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+    
+        <dxi-column dataField="Position" caption="#" [width]="40"></dxi-column>
+        <dxi-column dataField="Name" caption="Lag"></dxi-column>
+        <dxi-column dataField="Points" caption="Poeng"></dxi-column>
+        <dxi-column dataField="TotalCQPoints" caption="CQ" cellTemplate="cqPointsTemplate" [hidingPriority]="0"></dxi-column>
+        <dxi-column dataField="RankingTrend" caption=" " cellTemplate="rankingTrendTemplate" [width]="30" [hidingPriority]="1" ></dxi-column>
+    
+        <div *dxTemplate="let d of 'cqPointsTemplate'" >
+          <div title="{{d.data.Note}}">{{d.data.TotalCQPoints}}<span *ngIf="d.data.TotalCQPoints > 8000">*</span></div>
+          
+        </div>
+        <div *dxTemplate="let d of 'rankingTrendTemplate'" >
+          <div title="{{d.data.RankingTrend}}">
+            <i *ngIf="d.data.RankingTrend > 0 && d.data.RankingTrend < 10" class="fa fa-angle-up fa-2x" style="color: green"  > </i>
+            <i *ngIf="d.data.RankingTrend >= 10" class="fa fa-angle-double-up fa-2x" style="color: green"  > </i>
+            <i *ngIf="d.data.RankingTrend < 0 && d.data.RankingTrend > -10" class="fa fa-angle-down fa-2x"  style="color: red" > </i>
+            <i *ngIf="d.data.RankingTrend <= -10" class="fa fa-angle-double-down fa-2x"  style="color: red" > </i>
+          </div>
+          
+        </div>
+    </dx-data-grid>
+  <!-- </dxi-item> -->
+  </div>
+
+  <div class="flex-container-col-2"  #riders>
+  <!-- <dxi-item [baseSize]="1200" class="flex-container-col"> -->
+    
+      <h3>{{selectedCompetitionTeamName}}</h3>
+      
+      <dx-tabs
+        #apiTabs
+        [dataSource]="tabs"
+        [(selectedIndex)]="selectedTabIndexCompTeamRiders"
+        (onItemClick)="selectTab($event)"
+    ></dx-tabs>
+    <div [hidden]="selectedTabIndexCompTeamRiders !== 0">
+        <dx-data-grid id="gridContainer"
+          [dataSource]="dataSourceBikeRiders"
+          keyExpr="BikeRiderDetailId"
+          [showBorders]="true"
+          [hoverStateEnabled]="true"
+          [allowColumnResizing]="true"
+          [selectedRowKeys]="[]"
+          [height]="600"
+          (onRowClick)="bikeRiderClicked($event, result)">
+          <dxo-selection mode="single"></dxo-selection>
+          <dxo-scrolling mode="virtual"></dxo-scrolling>
+          <dxo-export [enabled]="true" fileName="LagRyttere" ></dxo-export>
+      
+          <dxi-column dataField="BikeRiderName" caption="Rytter"></dxi-column>
+          <dxi-column dataField="Points" caption="Poeng" [width]="50"></dxi-column>
+          <dxi-column dataField="CQPoints" caption="CQ" [width]="50"></dxi-column>
+          <dxi-column dataField="RiderIndexTwoDecimals" caption="Indeks" [width]="50" cellTemplate="riderIndexTemplate" ></dxi-column>
+    
+          <div *dxTemplate="let d of 'riderIndexTemplate'" [class]="d.data.RiderIndex < 0.5 ? 'red' : d.data.RiderIndex >= 0.5 && d.data.RiderIndex <= 1 ? 'orange' : d.data.RiderIndex > 1 && d.data.RiderIndex < 2 ? 'yellow' : d.data.RiderIndex >= 2 && d.data.RiderIndex < 3 ? 'green' : 'blue'">
+            <div class="riderindex">{{d.data.RiderIndexTwoDecimals}}</div>
+        </div>
+      </dx-data-grid>
+    </div>
+    <div [hidden]="selectedTabIndexCompTeamRiders !== 1">
+      <app-stats-competitionteam-bikeriders-sankey (loading)="onLoadingDetail($event)" (linkClicked)="onLinkClickBikeRider($event)"></app-stats-competitionteam-bikeriders-sankey>
+    </div>
+    
+
+    
+    <br #result>
+      <dx-tabs
+        #apiTabs
+        [dataSource]="tabs"
+        [(selectedIndex)]="selectedTabIndexBikeRider"
+        (onItemClick)="selectTab($event)"
+    ></dx-tabs>
+    <div [hidden]="selectedTabIndexBikeRider !== 0">
+      <app-stats-bikeriderresults [selectedBikeRiderName]="selectedBikeRiderName"></app-stats-bikeriderresults>
+    </div>
+    <div [hidden]="selectedTabIndexBikeRider !== 1">
+      <app-stats-bikerider-sankey (loading)="onLoadingDetail($event)" [selectedCompTeamId]="selectedCompetitionTeamId" [showBikeRiderSelect]="false" ></app-stats-bikerider-sankey>
+    </div>
+  </div>
+  <!-- </dxi-item> -->
+<!-- </dx-box> -->
+</div>
+  

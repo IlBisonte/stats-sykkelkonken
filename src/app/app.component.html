@@ -1,0 +1,34 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center" (click)="openNav($event)">
+  <app-nav [sidebarwidth]="sidebarwidth" (sidebarwidthChanged)="onSideBarWidthChanged($event)"></app-nav>
+  
+
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
+
+</div>
+
+<!-- <dx-toolbar id="toolbar">
+  <dxi-item 
+      widget="dxButton"
+      [options]="buttonOptions"
+      location="before">
+  </dxi-item>
+</dx-toolbar>
+<dx-drawer
+  template="template"
+  [(opened)]="isOpened"
+  [minSize]="50"
+  revealMode="expand"
+  openedStateMode="overlap">
+  <div *dxTemplate="let data of 'template'">
+      <dx-list
+          [items]="navigation"
+          [width]="200"
+          selectionMode="single"
+          (onSelectionChanged)="loadView($event)">
+      </dx-list>
+  </div>
+  <div id="view"><router-outlet></router-outlet></div>
+</dx-drawer> -->
+
+<!-- <app-nav></app-nav> -->

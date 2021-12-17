@@ -1,0 +1,11 @@
+.grid-register-wrapper {
+    display: grid;
+    grid-template-columns: auto 400px auto;
+    /* grid-template-columns:auto auto; */
+    grid-gap: 10px;
+  }
+
+.grid-register-row-1-col-2 {
+    grid-row: 1;
+    grid-column: 2 / 2;
+}

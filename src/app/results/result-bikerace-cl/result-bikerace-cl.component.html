@@ -1,0 +1,131 @@
+<dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true">
+</dx-load-panel>
+<form >
+  <div class="flex-container">
+    <div class="flex-container-col">
+        <dx-data-grid 
+            #gridBikeRaces
+            id="gridContainer"
+            [dataSource]="bikeRaceDataSource"
+            keyExpr="BikeRaceId"
+            [showBorders]="true"
+            [hoverStateEnabled]="true"
+            [allowColumnResizing]="true"
+            (onSelectionChanged)="onSelectionChanged($event, results)"
+            [height]="800"
+            [selectedRowKeys]="[]"
+            [columnHidingEnabled]="true">
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+            <dxo-search-panel [visible]="true"></dxo-search-panel>
+            <dxo-export [enabled]="true" fileName="Ritt" ></dxo-export>
+            <dxi-column dataField="Name" caption="Ritt"></dxi-column>
+            <dxi-column dataField="StartDateToddMMM" caption="Start" [width]="60" [hidingPriority]="3"></dxi-column>
+            <dxi-column dataField="FinishDateToddMMM" caption="Slutt" [width]="60" [hidingPriority]="2"></dxi-column>
+            <dxi-column dataField="NoOfStages" caption="Etapper" [width]="75" cellTemplate="cellTemplateNoOfStages" [hidingPriority]="1"></dxi-column>
+            <dxi-column dataField="IsCalculated" caption="Utregnet" [width]="75" [hidingPriority]="0"></dxi-column>
+            <dxi-column dataField="BikeRiderWinner" caption="Vinner"></dxi-column>
+            <div *dxTemplate="let data of 'cellTemplateNoOfStages'">
+              <span *ngIf="data.data.NoOfStages > 0">{{data.data.NoOfStages}}</span>
+            </div>
+        </dx-data-grid>
+    </div>
+    <div #results class="flex-container-col">
+        <h3>{{selectedBikeRaceName}}</h3>
+        <dx-tabs
+          #apiTabs
+          [dataSource]="tabs"
+          [selectedIndex]="selectedTabIndex"
+          (onItemClick)="selectTab($event)"
+      ></dx-tabs>
+        <div *ngIf="selectedTabIndex === 0">
+            <dx-data-grid 
+            #gridBikeRaceResults
+            [dataSource]="totalResultsDataSource"
+            [showBorders]="true"
+            [hoverStateEnabled]="true"
+            [height]="750"
+            [allowColumnResizing]="true"
+            (onRowPrepared)="onRowPrepared($event)"
+            [columnHidingEnabled]="true">
+            <dxo-search-panel [visible]="true"></dxo-search-panel>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-export [enabled]="true" [fileName]="resultFileName" ></dxo-export>
+            <dxi-column dataField="Position" caption="#" [width]="40"></dxi-column>
+            <dxi-column dataField="CompetitionTeamName" caption="Lag" [width]="200" ></dxi-column>
+            <dxi-column dataField="TotalPoints" caption="Poeng" [width]="60" ></dxi-column>
+            <dxi-column dataField="BikeRiders" caption="Ryttere" [hidingPriority]="0" ></dxi-column>
+            
+          </dx-data-grid>
+        </div>
+  
+        <div *ngIf="selectedTabIndex === 1">
+            <dx-data-grid 
+            #gridBikeRaceResults
+            [dataSource]="gcResultsDataSource"
+            [showBorders]="true"
+            [hoverStateEnabled]="true"
+            [height]="750"
+            [allowColumnResizing]="true"
+            [columnHidingEnabled]="true">
+            <dxo-search-panel [visible]="true"></dxo-search-panel>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-export [enabled]="true" [fileName]="resultFileName" ></dxo-export>
+            <dxi-column dataField="Position" caption="#" [width]="40"></dxi-column>
+            <dxi-column dataField="CompetitionTeamName" caption="Lag" [width]="200" ></dxi-column>
+            <dxi-column dataField="GCPoints" caption="Poeng" [width]="60" ></dxi-column>
+            <dxi-column dataField="BikeRiders" caption="Ryttere" [hidingPriority]="0" ></dxi-column>
+            
+          </dx-data-grid>
+        </div>
+          <div *ngIf="selectedTabIndex === 2">
+          <dx-data-grid 
+              [dataSource]="stageResultsDataSource"
+              [showBorders]="true"
+              [hoverStateEnabled]="true"
+              [allowColumnResizing]="true"
+              [height]="750"
+              [selectedRowKeys]="[]"
+              [columnHidingEnabled]="true">
+              <dxo-selection mode="single"></dxo-selection>
+              <dxo-search-panel [visible]="true"></dxo-search-panel>
+              <dxo-group-panel [visible]="true"></dxo-group-panel>
+              <dxo-scrolling mode="virtual"></dxo-scrolling>
+              <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+              <dxo-export [enabled]="true" [fileName]="stageFileName" ></dxo-export>
+              <dxi-column dataField="CompetitionTeamName" caption="Lag" [width]="200" ></dxi-column>
+              <dxi-column dataField="StageNo" caption="Etappenr" [groupIndex]="0" ></dxi-column>
+              <dxi-column dataField="StagePoints" caption="Poeng" [width]="60" ></dxi-column>
+              <dxi-column dataField="BikeRiders" caption="Ryttere"  [hidingPriority]="0"></dxi-column>
+          </dx-data-grid>
+          </div>
+          <div *ngIf="selectedTabIndex === 3">
+            <dx-data-grid 
+              [dataSource]="leaderJerseyDataSource"
+              [showBorders]="true"
+              [hoverStateEnabled]="true"
+              [allowColumnResizing]="true"
+              [height]="750"
+              [selectedRowKeys]="[]"
+              [columnHidingEnabled]="true">
+              <dxo-selection mode="single"></dxo-selection>
+              <dxo-search-panel [visible]="true"></dxo-search-panel>
+              <dxo-group-panel [visible]="true"></dxo-group-panel>
+              <dxo-scrolling mode="virtual"></dxo-scrolling>
+              <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+              <dxo-export [enabled]="true" [fileName]="leaderJerseyFileName" ></dxo-export>
+              <dxi-column dataField="CompetitionTeamName" caption="Lag" [width]="200" ></dxi-column>
+              <dxi-column dataField="LeaderJerseyName" caption="Trøye"  [groupIndex]="0" ></dxi-column>
+              <dxi-column dataField="LeaderJerseyPoints" caption="Poeng"  [width]="60" ></dxi-column>
+              <dxi-column dataField="BikeRiders" caption="Ryttere" [hidingPriority]="0" ></dxi-column>
+            </dx-data-grid>
+          </div>
+    </div>
+  </div>
+  </form>

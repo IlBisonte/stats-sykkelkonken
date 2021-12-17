@@ -1,0 +1,54 @@
+
+
+<div class="flex-grid">
+    <div class="col">
+        <h3>Vinnere sykkelkonken</h3>
+        <dx-list class="list-container-hof" [items]="victoryTeams" >
+          <div *dxTemplate="let item of 'item'">
+                <div class="victoryteam">
+                    <div class="year">{{item.Year}}</div>
+                    <div>{{item.TeamName}}</div>
+                    <div class="points">{{item.Points}}</div>
+                </div>
+            </div>
+        </dx-list>
+    </div>
+    <div class="col">
+        <h3>Vinnere CL</h3>
+        <dx-list class="list-container-hof" [items]="victoryTeamsCL" >
+          <div *dxTemplate="let item of 'item'">
+                <div class="victoryteam">
+                    <div class="year">{{item.Year}}</div>
+                    <div>{{item.TeamName}}</div>
+                    <div class="points">{{item.Points}}</div>
+                </div>
+            </div>
+        </dx-list>
+    </div>
+    <div class="col">
+        <h3>Vinnere Monumentene</h3>
+        <dx-list class="list-container-hof" [items]="victoryTeamsMonuments" >
+          <div *dxTemplate="let item of 'item'">
+                <div class="victoryteam">
+                    <div class="year">{{item.Year}}</div>
+                    <div>{{item.TeamName}}</div>
+                    <div class="points">{{item.Points}}</div>
+                </div>
+            </div>
+        </dx-list>
+    </div>
+</div>
+<div class="flex-grid-thirds">
+    <div class="col" >
+        <h3>Rekorder Ryttere</h3>
+        <dx-list class="list-container-hof" [items]="listRiderRecords" >
+          <div *dxTemplate="let item of 'item'">
+                <div class="victoryteam">
+                    <div class="recordname">{{item.RecordName}}</div>
+                    <div>{{item.RiderNameAndYear}}</div>
+                    <div class="points">{{item.Points}}</div>
+                </div>
+            </div>
+        </dx-list>
+    </div>
+</div>

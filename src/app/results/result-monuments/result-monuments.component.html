@@ -1,0 +1,87 @@
+
+<div class="flex-container">
+  <div class="flex-container-col">
+  
+    <dx-data-grid id="gridContainer"
+        [dataSource]="dataSourceMonuments"
+        keyExpr="CompetitionTeamId"
+        [showBorders]="true"
+        [hoverStateEnabled]="true"
+        [selectedRowKeys]="[]"
+        [allowColumnResizing]="true"
+        (onRowClick)="competitionTeamClicked($event, riders)"
+        [height]="800"
+        (onRowPrepared)="onRowPrepared($event)">
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-export [enabled]="true" fileName="Resultater Monumentene" ></dxo-export>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+    
+        <dxi-column dataField="Position" caption="#" [width]="40"></dxi-column>
+        <dxi-column dataField="Name" caption="Lag"></dxi-column>
+        <dxi-column dataField="Points" caption="Poeng" [width]="50"></dxi-column>
+        <dxi-column dataField="TotalCQPoints" caption="CQ" [width]="50" cellTemplate="cqPointsTemplate"></dxi-column>
+    
+        <div *dxTemplate="let d of 'cqPointsTemplate'" >
+          <div title="{{d.data.Note}}">{{d.data.TotalCQPoints}}<span *ngIf="d.data.TotalCQPoints > 8000">*</span></div>
+          
+        </div>
+    </dx-data-grid>
+  </div>
+
+  <div #riders class="flex-container-col-2">
+    
+      <h3>{{selectedCompetitionTeamName}}</h3>
+      <dx-data-grid id="gridContainer"
+        [dataSource]="dataSourceBikeRiders"
+        keyExpr="BikeRiderDetailId"
+        [showBorders]="true"
+        [hoverStateEnabled]="true"
+        [allowColumnResizing]="true"
+        [selectedRowKeys]="[]"
+        [height]="600"
+        (onRowClick)="bikeRiderClicked($event, results)">
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-export [enabled]="true" fileName="LagRyttere" ></dxo-export>
+    
+        <dxi-column dataField="BikeRiderName" caption="Rytter"></dxi-column>
+        <dxi-column dataField="Points" caption="Poeng" [width]="50"></dxi-column>
+        <dxi-column dataField="CQPoints" caption="CQ" [width]="50"></dxi-column>
+  
+    </dx-data-grid>
+    <div #results>
+      <h3>{{selectedBikeRiderName}}</h3>
+
+      <dx-data-grid id="gridContainer"
+        [dataSource]="dataSourceBikeRiderResults"
+        [showBorders]="true"
+        [allowColumnResizing]="true"
+        [hoverStateEnabled]="true">
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-export [enabled]="true" fileName="ResultaterRytter" ></dxo-export>
+
+        <dxi-column dataField="GCPosition" caption="Plassering" [width]="100"></dxi-column>
+        <dxi-column dataField="BikeRaceName" caption="Ritt"></dxi-column>
+        <dxi-column dataField="GCPoints" caption="Poeng" [width]="100"></dxi-column>
+
+        <dxo-summary [calculateCustomSummary]="calculateSummary">
+          <dxi-total-item
+              name="customSumTotalPoints"
+              summaryType="custom"
+              displayFormat="Poeng: {0}"
+              showInColumn="Points">
+          </dxi-total-item>
+          <dxi-group-item
+              name="customSumTotalPointsGroup"
+              summaryType="custom"
+              displayFormat="Poeng: {0}"
+              showInColumn="Points"
+              [showInGroupFooter]="true">
+          </dxi-group-item>
+        </dxo-summary>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+  

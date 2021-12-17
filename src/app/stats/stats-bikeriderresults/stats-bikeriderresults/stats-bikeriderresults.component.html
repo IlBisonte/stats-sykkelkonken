@@ -1,0 +1,52 @@
+
+  <h3>{{selectedBikeRiderName}}</h3>
+
+  <dx-data-grid id="gridContainer"
+    [dataSource]="dataSourceBikeRiderResults"
+    [showBorders]="true"
+    [allowColumnResizing]="true"
+    [hoverStateEnabled]="true"
+    (onCellPrepared)="onCellPrepared($event)"
+    [columnHidingEnabled]="true">
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <dxo-export [enabled]="true" [fileName]="selectedBikeRiderName" ></dxo-export>
+
+    <dxi-column dataField="Date_ToString" caption=" Dato " [width]="85"  [hidingPriority]="0"></dxi-column>
+    <dxi-column dataField="Position" caption="Plassering " [width]="75"></dxi-column>
+    <dxi-column dataField="BikeRaceName" caption="Ritt"   [calculateSortValue]="customSortingFunctionBikeRace"  ></dxi-column>
+    <dxi-column dataField="Description" caption=" "  [width]="100"  [hidingPriority]="1" ></dxi-column>
+    <dxi-column dataField="Points" caption="Poeng" [width]="75"></dxi-column>
+
+    <dxo-summary [calculateCustomSummary]="calculateSummary">
+      <dxi-total-item
+          name="customSumTotalPoints"
+          summaryType="custom"
+          displayFormat="{0}"
+          showInColumn="Points">
+      </dxi-total-item>
+      <dxi-group-item
+          name="customSumTotalPointsGroup"
+          summaryType="custom"
+          displayFormat="{0}"
+          showInColumn="Points"
+          [showInGroupFooter]="true">
+      </dxi-group-item>
+    </dxo-summary>
+  </dx-data-grid>
+
+  
+  <br>
+  <div class="flex-grid-thirds" >
+    <div class="col" >
+    <h3>Valgt av lag</h3>
+    <dx-list [items]="listPickedByCompTeams" style="background-color: #fff; height: auto;">
+      <div *dxTemplate="let item of 'item'">
+            <div class="listcompteams">
+                <div class="recordname">{{item}}</div>
+            </div>
+        </div>
+    </dx-list>
+    </div>
+  </div>

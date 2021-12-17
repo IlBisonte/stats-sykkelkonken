@@ -1,0 +1,36 @@
+::ng-deep .optionsStatsSeasonPlacement {
+    padding: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+    margin-top: 20px;
+}
+::ng-deep .optionStatsSeasonPlacement {
+    margin-top: 10px;
+}
+::ng-deep .caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+::ng-deep .optionStatsSeasonPlacement > span {
+    margin-right: 10px;
+}
+::ng-deep .optionStatsSeasonPlacement > .dx-widget {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+::ng-deep .cssSwitch > .dx-switch-wrapper > .dx-switch-container >  .dx-switch-inner > .dx-switch-on, 
+::ng-deep .cssSwitch > .dx-switch-wrapper > .dx-switch-container >  .dx-switch-inner > .dx-switch-off {
+    line-height: 30px;
+    font-size: 14px;
+    color: black;
+}
+
+::ng-deep .cssSwitch>.dx-switch-wrapper>.dx-switch-container {
+    width: 250px;
+    height: 35px;
+}
+
+::ng-deep .cssSwitch>.dx-switch-wrapper>.dx-switch-container>.dx-switch-inner>.dx-switch-handle {
+    height: 30px;
+}

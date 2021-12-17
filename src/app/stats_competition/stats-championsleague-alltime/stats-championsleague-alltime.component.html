@@ -1,0 +1,29 @@
+<div class="flex-container-totalscore">
+    <div class="flex-container-totalscore-col">
+        <dx-data-grid id="gridContainer"
+            [dataSource]="dataSource"
+            keyExpr="Name"
+            [showBorders]="true"
+            [hoverStateEnabled]="true"
+            [selectedRowKeys]="[]"
+            [height]="800"
+            [allowColumnResizing]="true"
+            [columnHidingEnabled]="true">
+
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+            <dxo-export [enabled]="true" fileName="Lagstatistikk Alltime CL" ></dxo-export>
+            <dxo-search-panel [visible]="true"></dxo-search-panel>
+
+            <dxi-column dataField="Name" caption="Navn" ></dxi-column>
+            <dxi-column dataField="Points" caption="Poeng" ></dxi-column>
+            <dxi-column dataField="TeamIndexTwoDecimals" caption="Index(gj.snitt)" cellTemplate="teamIndexTemplate"  [hidingPriority]="0" ></dxi-column>
+            <dxi-column dataField="NoOfParticipations" caption="Antall deltakelser" [hidingPriority]="1" ></dxi-column>
+            <dxi-column dataField="Victories" caption="Seiere" [hidingPriority]="2" ></dxi-column>
+            
+            <div *dxTemplate="let d of 'teamIndexTemplate'" [class]="d.data.TeamIndex < 0.5 ? 'red' : d.data.TeamIndex >= 0.5 && d.data.TeamIndex <= 1 ? 'orange' : d.data.TeamIndex > 1 && d.data.TeamIndex < 2 ? 'yellow' : d.data.TeamIndex >= 2 && d.data.TeamIndex < 3 ? 'green' : 'blue'">
+                <div class="riderindex">{{d.data.TeamIndexTwoDecimals}}</div>
+            </div>
+        </dx-data-grid>
+    </div>
+</div>

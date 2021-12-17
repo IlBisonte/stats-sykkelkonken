@@ -1,0 +1,101 @@
+::ng-deep .list-container-hof {
+    background-color: white;
+    height: auto;
+}
+::ng-deep .victoryteam {
+    height: 15px;
+}
+::ng-deep .victoryteam > div.year {
+    height: 100%;
+    width: 95px;
+    float: left;
+}
+::ng-deep .victoryteam > div.recordname {
+    height: 100%;
+    width: auto;
+    float: left;
+    font-weight: bold;
+}
+::ng-deep .victoryteam > div {
+    padding-left: 10px;
+    vertical-align: top;
+    line-height: 15px;
+    font-size: 12px;
+    float: left;
+}
+::ng-deep .victoryteam > div.points {
+    float: right;
+    font-size: 12px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns:auto auto; */
+    grid-gap: 10px;
+    grid-auto-rows: minmax(55px, auto);
+  }
+
+.grid-row-1-col-1 {
+    grid-row: 1;
+    grid-column: 1 / 1;
+}
+
+.grid-row-1-col-2 {
+    grid-row: 1;
+    grid-column: 2 / 2;
+}
+
+.grid-row-1-col-3 {
+    grid-row: 1;
+    grid-column: 3 / 3;
+}
+
+.grid-item {
+    height: 550px;
+    flex-basis: 20%;
+    -ms-flex: auto;
+    width: 259px;
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  @media(max-width: 1333px) {
+    .grid-item {
+      flex-basis: 33.33%;
+    }
+  }
+  @media(max-width: 1073px) {
+     .grid-item {
+      flex-basis: 33.33%;
+    }
+  }
+  @media(max-width: 815px) {
+    .grid-item {
+      flex-basis: 50%;
+    }
+  }
+  @media(max-width: 555px) {
+    .grid-item {
+      flex-basis: 100%;
+    }
+  }
+
+  .flex-grid {
+    display: flex;
+  }
+  .flex-grid .col {
+    flex: 1;
+    padding: 10px;
+  }
+
+  @media (max-width: 800px) {
+    .flex-grid {
+      display: block;
+    }
+    .flex-grid .col {
+      flex: 1;
+      /* width: 98%; */
+      padding: 5px;
+    }
+  }

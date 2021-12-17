@@ -1,0 +1,53 @@
+
+<div class="flex-container">
+  <div class="flex-container-col">
+  
+    <dx-data-grid id="gridContainer"
+        [dataSource]="dataSourceRiderStats"
+        keyExpr="BikeRiderDetailId"
+        [showBorders]="true"
+        [hoverStateEnabled]="true"
+        [selectedRowKeys]="[]"
+        [height]="800"
+        [allowColumnResizing]="true"
+        (onRowClick)="bikeRiderClicked($event, results)"
+        (onCellPrepared)="onCellPrepared($event)"
+        [columnHidingEnabled]="true">
+
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-export [enabled]="true" fileName="Rytterstatistikk" ></dxo-export>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+
+        <dxi-column dataField="BikeRiderName" caption="Navn"></dxi-column>
+        <dxi-column dataField="BikeTeamCode" caption="Lag"  [width]="40" [hidingPriority]="0"></dxi-column>
+        <dxi-column dataField="Points" caption="Poeng" [width]="75"></dxi-column>
+        <dxi-column dataField="NoOfSelections" caption="Valgt Av" [width]="70" [hidingPriority]="2"></dxi-column>
+        <dxi-column dataField="SelectedByPercent" caption="Valgt Av %" [calculateSortValue]="customSortingFunctionSelectedBy" [width]="70" [hidingPriority]="1"></dxi-column>
+        <dxi-column dataField="CQPoints" caption="CQ" [width]="60" [hidingPriority]="5"></dxi-column>
+        <dxi-column dataField="RiderIndexTwoDecimals" caption="Indeks" cellTemplate="riderIndexTemplate" [calculateSortValue]="customSortingFunctionRiderIndex" [width]="50"  [hidingPriority]="4"></dxi-column>
+        <dxi-column dataField="CLTeamName" caption="CL"  [width]="35" [hidingPriority]="3" ></dxi-column>
+
+        
+        <div *dxTemplate="let d of 'riderIndexTemplate'" [class]="d.data.RiderIndex < 0.5 ? 'red' : d.data.RiderIndex >= 0.5 && d.data.RiderIndex <= 1 ? 'orange' : d.data.RiderIndex > 1 && d.data.RiderIndex < 2 ? 'yellow' : d.data.RiderIndex >= 2 && d.data.RiderIndex < 3 ? 'green' : 'blue'">
+          <div class="riderindex">{{d.data.RiderIndexTwoDecimals}}</div>
+      </div>
+    </dx-data-grid>
+  </div>
+  <div #results class="flex-container-col" >
+  
+    <dx-tabs
+        #apiTabs
+        [dataSource]="tabs"
+        [(selectedIndex)]="selectedTabIndexBikeRider"
+    ></dx-tabs>
+    <div [hidden]="selectedTabIndexBikeRider !== 0">
+      <app-stats-bikeriderresults style="float: top" [selectedBikeRiderName]="selectedBikeRiderName"></app-stats-bikeriderresults>
+    </div>
+    <div [hidden]="selectedTabIndexBikeRider !== 1">
+      <app-stats-bikerider-sankey  [showBikeRiderSelect]="false" ></app-stats-bikerider-sankey>
+    </div>
+
+  </div>
+</div>
+  

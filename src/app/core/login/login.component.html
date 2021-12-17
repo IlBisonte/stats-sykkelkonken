@@ -1,0 +1,24 @@
+<dx-load-panel message="Signing in..." [visible]="loadPanelVisible"></dx-load-panel>
+<div class="login">
+  <table>
+    <tr>
+      <td><div class="error" [hidden]="!message">{{ message }}</div></td>
+    </tr>
+    <tr>
+      <td class="dx-icon-user"></td>
+      <td><dx-text-box #userTextBox [(value)]="username" (onEnterKey)="loginClick()"></dx-text-box></td>
+    </tr>
+    <tr>
+      <td class="dx-icon-key"></td>
+      <td><dx-text-box [(value)]="password" mode="password" (onEnterKey)="loginClick()"></dx-text-box></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td ><dx-button text="Logg inn" type="default" (onClick)="loginClick()"></dx-button></td>
+    </tr>
+
+  </table>
+  <!-- <div class="logo">
+    <a href="http://www.ams.no" target="_blank"><img src="./assets/images/ams_logo_blue_v.png" /></a>
+  </div>   -->
+</div>

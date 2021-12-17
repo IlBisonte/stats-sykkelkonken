@@ -1,0 +1,58 @@
+<dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true">
+</dx-load-panel>
+
+<div class="optionsStatsSankey">
+    <div class="caption">Velg lag</div>
+    
+    <div class="btnPrevious">
+        <dx-button
+                icon="back"
+                text="Forrige kategori"
+                (onClick)="previousCategory()">
+            </dx-button>
+    </div>
+    <div class="optionStatsSankey">
+        <dx-select-box
+            [dataSource]="competitionTeams"
+            displayExpr="Name"
+            valueExpr="CompetitionTeamId"
+            [(value)]="selectedCompTeamId"
+            (onValueChanged)="onCompetitionTeamIdChanged($event)"
+            [searchEnabled]="true"
+        ></dx-select-box>
+    </div>
+</div>
+<dx-sankey id="sankey"
+    [dataSource]="dataSource"
+    sourceField="category"
+    targetField="categoryTarget"
+    weightField="points"
+    title="Fordeling av poeng"
+    style="margin: 10px"
+    (onLinkClick)="onLinkClick($event)">
+    <dxo-export [enabled]="true" fileName="Fordeling av poeng" ></dxo-export>
+    <dxo-tooltip 
+        [enabled]="true"
+        [customizeLinkTooltip]="customizeLinkTooltip"
+        [customizeNodeTooltip]="customizeNodeTooltip">
+    </dxo-tooltip>
+    <dxo-label 
+        [visible]="true"
+        [customizeText]="customizeText">
+    </dxo-label>
+    <dxo-link 
+        colorMode="gradient">
+    </dxo-link>
+    <dxo-node 
+        [width]="8"
+        [padding]="30">
+    </dxo-node>
+</dx-sankey>
+
+<app-stats-competitionteam-bikeriders-sankey  (linkClicked)="onLinkClickBikeRider($event)"></app-stats-competitionteam-bikeriders-sankey>
+
+<app-stats-bikerider-sankey  ></app-stats-bikerider-sankey>

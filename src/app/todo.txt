@@ -1,0 +1,5 @@
+Lage sesongplasseringschart for CL
+
+I stats-bikerace-victories(Antall pallplasseringer) må det legges inn shortname på sykkelritt i "Rittseiere"-kolonnen
+
+

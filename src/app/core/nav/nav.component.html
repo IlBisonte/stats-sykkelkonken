@@ -1,0 +1,134 @@
+<header (click)="openNav($event)" >
+  <span class="menubtn" >&#9776;</span>
+  <!-- <span class="menubtn" style="font-size:30px;cursor:pointer;float:left" (click)="closeNav()">&#9776;</span> -->
+  <div id="mySidenav" class="sidenav" [style.width.px]="sidebarwidth">
+    
+    <dx-menu class="main-menu"
+                  [width]="200"
+                 [dataSource]="mainMenuItems"
+                 [showFirstSubmenuMode]="showFirstSubmenuModes"
+                 hideSubmenuOnMouseLeave="true"
+                 displayExpr="moduleName"
+                 orientation="vertical"
+                 (onItemClick)="itemClick($event)">
+        </dx-menu>
+  </div>
+  <span class="selectedMenu" >{{selectedMenuText}}</span>
+  <dx-select-box class="selectYear"  [items]="years" [value]="selectedYear" (onValueChanged)="onYearChanged($event)"></dx-select-box>
+  <i *ngIf="currentUser === null || currentUser === undefined || !currentUser.IsLoggedIn" class="dx-icon-user loginuser" (click)="onLoginClicked($event)" title="Logg inn"></i>
+  <!-- <i  class="dx-icon-runner loginuser" (click)="onLogoutClicked($event)" title="Logg ut"></i> -->
+  <i *ngIf="currentUser !== null && currentUser !== undefined && currentUser.IsLoggedIn" class="fa fa-bicycle fa-5x logoutuser" aria-hidden="true" (click)="onLogoutClicked($event)" title="Logg ut"> </i>
+  
+</header>
+<dx-popup
+  class="popup"
+  [width]="350"
+  [height]="300"
+  [showTitle]="true"
+  title="Logg inn"
+  [dragEnabled]="true"
+  [showCloseButton]="true"
+  [closeOnOutsideClick]="true"
+  [(visible)]="popupVisible">
+  <div *dxTemplate="let data of 'content'">
+    <app-login *ngIf="currentUser === null || currentUser === undefined || !currentUser.IsLoggedIn"></app-login>
+  </div>
+</dx-popup>
+<!-- <div class="nav-sykkelkonken" > -->
+
+  <!-- <dx-drawer 
+    [openedStateMode]="shrink"
+    [position]="left"
+    [revealMode]="slide"
+    template="template"
+    [opened]="false"
+    [height]="400"
+    [closeOnOutsideClick]="true">
+    <div *dxTemplate="let data of 'template'" style="width: 200px">
+        <dx-list class="panel-list dx-theme-accent-as-background-color"
+            [dataSource]="mainMenuItems"
+            [hoverStateEnabled]="false"
+            [activeStateEnabled]="false"
+            [focusStateEnabled]="false">
+        </dx-list>
+    </div>
+    <div id="content" class="dx-theme-background-color" [innerHTML]="text"></div>
+  </dx-drawer> -->
+
+  
+
+  
+
+
+  <!-- <div class="menu" >
+    <dx-box
+    class="boxMenu"
+    direction="col"
+    crossAlign="stretch"
+    width="100%" 
+    height="100%">
+    <dxi-item [ratio]="6" *ngIf="isValid">
+      <dx-scroll-view style="display:block;" [direction]="horizontal" [useNative]="false" [scrollByContent]="true"> 
+         <dx-menu class="main-menu"
+                  [width]="200"
+                 [dataSource]="mainMenuItems"
+                 [showFirstSubmenuMode]="showFirstSubmenuModes"
+                 hideSubmenuOnMouseLeave="true"
+                 displayExpr="moduleName"
+                 orientation="vertical"
+                 (onItemClick)="itemClick($event)">
+        </dx-menu> 
+       </dx-scroll-view>
+    </dxi-item>
+    <dxi-item [ratio]="1">
+      <dx-select-box style="top: 7px" [items]="years" [value]="selectedYear" (onValueChanged)="onYearChanged($event)"></dx-select-box>
+    </dxi-item>
+    <dxi-item [ratio]="3" *ngIf="isValid" style="margin-right: 56px;">
+        <dx-scroll-view style="display:block;" direction="horizontal" [useNative]="false" [scrollByContent]="true">
+          <div class="user">
+            <div style="float: right;">
+                <dx-menu class="user-menu"
+                          [items]="userMenuItems"
+                          [showFirstSubmenuMode]="showFirstSubmenuModes"
+                          hideSubmenuOnMouseLeave="true"
+                          displayExpr="functionName"
+                          (onItemClick)="userItemClick($event)">                        
+                </dx-menu>              
+            </div>
+          </div>
+        </dx-scroll-view>
+      </dxi-item>
+</dx-box>
+  </div>
+  <app-login *ngIf="currentUser === null || currentUser === undefined || !currentUser.IsLoggedIn"></app-login> -->
+  <!--<a class="side-menu-open fas fa-bars" ></a>-->
+
+<!-- </div> -->
+
+  
+<!-- <dx-toolbar id="toolbar">
+  <dxi-item 
+      widget="dxButton"
+      [options]="buttonOptions"
+      location="before">
+  </dxi-item>
+</dx-toolbar>
+<dx-drawer
+  template="template"
+  [(opened)]="isOpened"
+  [minSize]="50"
+  revealMode="expand"
+  openedStateMode="overlap">
+  <div *dxTemplate="let data of 'template'">
+      <dx-list
+          [items]="navigation"
+          [width]="200"
+          selectionMode="single"
+          (onSelectionChanged)="loadView($event)">
+      </dx-list>
+  </div>
+  <div id="view"><router-outlet></router-outlet></div>
+</dx-drawer> -->
+
+
+

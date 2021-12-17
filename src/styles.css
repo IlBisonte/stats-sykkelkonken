@@ -1,0 +1,159 @@
+/* You can add global styles to this file, and also import other style files */
+
+.form {
+  width: 50%;
+  margin: auto;
+}
+
+*:not(i) {
+    font-family: 'Trebuchet MS';
+  }
+
+  .dx-menu-base .dx-menu-item .dx-menu-item-content {
+    color: #EEF1F4;
+    padding: 15px;
+    font-weight: bolder;
+  }
+  
+  .dx-list-item {
+    padding: 8px;
+    /* color: #EEF1F4; */
+    color: black;
+    font-weight: bolder;
+  }
+  
+  .dx-list-item-selected {
+    background-color: #4c6a8a ;
+    color: #fafafa ;
+    border-radius: 2px;
+  }
+
+  .dx-menu-base .dx-menu-item.dx-state-hover .dx-menu-item-content {
+    color: #4c6a8a !important;
+    padding: 15px;
+    font-weight: bolder;
+  }
+
+  .dx-menu .dx-menu-item-expanded {
+      background-color: #EEF1F4;
+      color: #4c6a8a !important;
+  }
+  .dx-menu .dx-menu-item-expanded .dx-menu-item-text {
+      background-color: #EEF1F4;
+      color: #4c6a8a !important;
+  }
+  .dx-overlay-wrapper .dx-menu-items-container .dx-menu-item  {
+    background-color: #EEF1F4;
+  }
+  .dx-overlay-wrapper .dx-menu-items-container .dx-menu-item .dx-menu-item-text {
+    color: #4c6a8a ;
+  }
+  .dx-overlay-wrapper .dx-menu-items-container .dx-menu-item :hover {
+    background-color: #ffffff !important;
+  }
+
+/*Grid cell template*/
+  .blue {
+    color: #0071A3;
+}
+
+  .green {
+    color: #237C00;
+}
+
+  .yellow {
+    color: #FFC720;
+}
+
+ .orange {
+    color: #E19300;
+}
+
+ .red {
+    color: #CD2C22;
+}
+
+ .riderindex {
+    font-weight: bold;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  
+}
+
+.flex-container-col {
+  flex: 1;
+  padding: 10px;
+}
+
+.flex-container-col-2 {
+  flex: 2;
+  padding: 10px;
+}
+
+@media (max-width: 800px) {
+  .flex-container {
+    display: block;
+  }
+  .flex-container .flex-container-col {
+    flex: 1;
+    padding: 5px;
+  }
+  .flex-container .flex-container-col-2 {
+    flex: 1;
+    padding: 5px;
+  }
+}
+
+.dx-widget {
+  font-size: 12px !important;
+}
+
+.flex-container-totalscore {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start !important;
+  justify-content: center !important;
+}
+
+.flex-container-totalscore-col {
+  width: 40%;
+  padding: 10px;
+}
+
+@media (max-width: 1200px) {
+  .flex-container-totalscore {
+    display: block;
+  }
+  .flex-container-totalscore .flex-container-totalscore-col {
+    flex: 1;
+    width: auto;
+    padding: 5px;
+  }
+}
+
+
+
+.flex-grid-thirds {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-grid-thirds .col {
+  width: 32%;
+  padding: 10px;
+}
+
+@media (max-width: 800px) {
+  .flex-grid-thirds {
+    display: block;
+  }
+  .flex-grid-thirds .col {
+    flex: 1;
+    width: auto;
+    padding: 5px;
+  }
+}

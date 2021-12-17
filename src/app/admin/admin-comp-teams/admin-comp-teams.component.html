@@ -1,0 +1,58 @@
+<form class="form">
+    <dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true">
+</dx-load-panel>
+<!-- <dx-button text="Importer Konkurranselag"
+  (onClick)="import()">
+</dx-button> -->
+<!-- <dx-button text="Fjern konkurranselag" (onClick)="removeCompetitionTeams()">
+
+</dx-button> -->
+
+<dx-file-uploader
+#fileUploader
+[uploadUrl]="uploadCompetitionTeamsCrossListURL"
+[multiple]="false"
+accept="*"
+uploadMode="instantly"
+selectButtonText="Last opp konkurranselag kryssliste"
+></dx-file-uploader>
+<dx-file-uploader
+#fileUploader
+[uploadUrl]="uploadCompetitionTeamsRowListURL"
+[multiple]="false"
+accept="*"
+uploadMode="instantly"
+selectButtonText="Last opp konkurranselag radliste"
+></dx-file-uploader>
+<!-- 
+<dx-button text="Les fra PCS"
+(onClick)="readFromPCS()"></dx-button> -->
+<dx-data-grid id="gridContainer"
+    [dataSource]="dataSource"
+    [masterDetail]="{ enabled: true, template: 'detail' }"
+    keyExpr="CompetitionTeamId"
+    [allowColumnResizing]="true"
+    [showBorders]="true">
+
+    <dxi-column dataField="TeamName" caption="Lag"></dxi-column>
+    <dxi-column dataField="TotalCQPoints" caption="CQ"></dxi-column>
+
+    <div *dxTemplate="let team of 'detail'">
+        <div class="master-detail-caption">{{"Ryttere " + team.data.TeamName }}</div>
+        <dx-data-grid 
+            [dataSource]="team.data.BikeRiders"
+            [showBorders]="true"
+            [columnAutoWidth]="true">
+                <dxi-column dataField="BikeRiderName" caption="Navn"></dxi-column>
+                <dxi-column dataField="BikeTeamCode" caption="Lag"></dxi-column>
+                <dxi-column dataField="Nationality" caption="Nasjonalitet"></dxi-column>
+                <dxi-column dataField="CQPoints" caption="CQ"></dxi-column>
+        </dx-data-grid>       
+    </div>
+</dx-data-grid>
+
+</form>

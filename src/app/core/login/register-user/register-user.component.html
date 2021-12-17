@@ -1,0 +1,29 @@
+<div class="grid-register-wrapper">
+  <div class="grid-register-row-1-col-2">
+      <dx-form>
+          <dxi-item
+              itemType="group"
+              caption="Registrer">
+              <dxi-item dataField="brukernavn">
+                  <dx-text-box [(value)]="username"
+                  [showClearButton]="true">
+              </dx-text-box></dxi-item>
+              <dxi-item dataField="passord">
+                  <dx-text-box [(value)]="password"
+                      mode="password"
+                      [showClearButton]="true">
+                  </dx-text-box>
+              </dxi-item>
+              <dxi-item dataField="Gjenta Passord">
+                  <dx-text-box [(value)]="repeatPassword"
+                      mode="password"
+                      [showClearButton]="true">
+                  </dx-text-box>
+              </dxi-item>
+              <dxi-item ><dx-button style="float: right" text="Registrer" (onClick)="signupClicked()"></dx-button></dxi-item>
+              <dxi-item><span style="color:firebrick; float:right;" >{{errorMessage}}</span></dxi-item>
+              
+          </dxi-item>
+      </dx-form>
+  </div>
+</div>

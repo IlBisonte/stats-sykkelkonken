@@ -1,0 +1,33 @@
+<dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true">
+</dx-load-panel>
+
+<div class="flex-container">
+    <div class="flex-container-col">
+        <span>Velg sykkelritt å vise i sesongplasseringgraf (Statistikk Sykkelkonken -> Sesongplassering)</span>
+        <br>
+        <br>
+        <div class="list-container">
+            <dx-list 
+                #list
+                class="list-container-sp"
+                [dataSource]="bikeRaces"
+                [searchEnabled]="true"
+                keyExpr="BikeRaceDetailId"
+                searchExpr="Name"
+                searchMode="contains"
+                [selectionMode]="multiple"
+                [showSelectionControls]="true"
+                [(selectedItemKeys)]="selectedBikeRaces"
+                (onSelectionChanged)="onSelectedBikeRacesChanged($event)">
+                    <div *dxTemplate="let data of 'item'">
+                        <div>{{data.Name}}</div>
+                    </div>
+            </dx-list>
+        </div>
+    </div>
+
+</div>

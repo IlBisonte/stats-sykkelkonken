@@ -1,0 +1,89 @@
+
+
+    <dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true">
+</dx-load-panel>
+
+<div class="optionStatsSeasonPlacement">
+    <dx-switch class="cssSwitch" [(value)]="showRank" switchedOnText="Plassering" switchedOffText="Poeng"  (onValueChanged)="onValueChangedRankPoints($event)" [width]="250" [height]="35"></dx-switch>
+</div>
+<br>
+<br>
+<div *ngIf="showRank" class="caption">Maxranking</div>
+<div *ngIf="showRank" class="optionStatsSeasonPlacement">
+    <dx-number-box
+            [(value)]="maxPosition"
+            [min]="1"
+            [max]="noOfCompTeam"
+            [showSpinButtons]="true"
+        ></dx-number-box>
+</div>
+<div *ngIf="!showRank" class="caption">Min.poeng</div>
+<div *ngIf="!showRank" class="optionStatsSeasonPlacement">
+    <dx-number-box
+            [(value)]="minPosition"
+            [min]="minPoints"
+            [max]="maxPoints"
+            [showSpinButtons]="true"
+        ></dx-number-box>
+</div>
+<br>
+<dx-chart
+        palette="Material"
+        [dataSource]="dataSource" >
+        
+        <dxo-tooltip [enabled]="true"
+        location="edge"
+        [customizeTooltip]="customizeTooltip">
+        </dxo-tooltip>
+        <dxi-series
+            *ngFor="let compTeam of selectedCompTeams"
+            [valueField]="compTeam"
+            [name]="compTeam">
+        </dxi-series>
+        <dxo-common-series-settings #seriesSettings
+            argumentField="bikeRaceName"
+            type="line">
+        </dxo-common-series-settings>
+        <dxo-margin [bottom]="20"></dxo-margin>
+        <dxi-value-axis [inverted]="showRank" [min]="minPosition" [max]="maxPosition" [valueMarginsEnabled]="false" [tickInterval]="1">
+        </dxi-value-axis>
+        <dxo-argument-axis
+            [valueMarginsEnabled]="false"
+            discreteAxisDivisionMode="crossLabels">
+            <dxo-grid [visible]="true"></dxo-grid>
+        </dxo-argument-axis>
+        <dxo-legend
+            verticalAlignment="bottom"
+            horizontalAlignment="center"
+            itemTextPosition="bottom">
+        </dxo-legend>
+        <dxo-title
+            text="Sesongplassering konkurranselag">
+            <dxo-subtitle text="(Plassering i sykkelkonken etter hvert ritt)">
+            </dxo-subtitle>
+        </dxo-title>
+        <dxo-export [enabled]="true"></dxo-export>
+        <dxo-tooltip [enabled]="true"></dxo-tooltip>
+    </dx-chart>
+    <div class="optionsStatsSeasonPlacement">
+        <div class="caption">Valgte lag</div>
+        <div class="optionStatsSeasonPlacement">
+            <dx-tag-box
+                [dataSource]="competitionTeams"
+                displayExpr="Name"
+                valueExpr="Name"
+                [showClearButton]="true"
+                [(value)]="selectedCompTeams"
+                [searchEnabled]="true"
+                [showSelectionControls]="true"
+                applyValueMode="useButtons"
+                (onValueChanged)="onSelectedCompTeamChanged($event)"
+                [width]="500"
+                >
+            </dx-tag-box>
+        </div>
+    </div>

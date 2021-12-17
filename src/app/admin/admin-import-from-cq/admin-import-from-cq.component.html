@@ -1,0 +1,38 @@
+<form class="form">
+  <div class="container">
+
+    <dx-file-uploader
+          #fileUploader
+          [uploadUrl]="uploadRidersURL"
+          [multiple]="false"
+          accept="*"
+          [(value)]="value"
+          uploadMode="instantly"
+          selectButtonText="Last opp sykkelryttere"
+          labelText="Fra CQ Ranking"
+      ></dx-file-uploader>
+
+      
+    <!-- <dx-file-uploader
+    #fileUploader
+    [uploadUrl]="uploadTeamsURL"
+    [multiple]="false"
+    accept="*"
+    [(value)]="value"
+    uploadMode="instantly"
+    selectButtonText="Last opp sykkellag"
+    labelText="Fra UCI"
+></dx-file-uploader> -->
+
+<dx-file-uploader
+#fileUploader
+[uploadUrl]="uploadRacesURL"
+[multiple]="false"
+accept="*"
+[(value)]="value"
+uploadMode="instantly"
+selectButtonText="Last opp sykkelritt"
+labelText="Fra UCI"
+></dx-file-uploader>
+  </div>
+</form>

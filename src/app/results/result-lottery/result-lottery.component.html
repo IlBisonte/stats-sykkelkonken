@@ -1,0 +1,59 @@
+
+<div class="flex-container">
+  <div class="flex-container-col">
+  
+    <dx-data-grid id="gridContainer"
+        [dataSource]="dataSourceLotteryTeams"
+        keyExpr="CompetitionTeamId"
+        [showBorders]="true"
+        [hoverStateEnabled]="true"
+        [selectedRowKeys]="[]"
+        [allowColumnResizing]="true"
+        (onRowClick)="lotteryTeamClicked($event, riders)"
+        [height]="800"
+        (onRowPrepared)="onRowPrepared($event)"
+        (onCellPrepared)="onCellPrepared($event)">
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-export [enabled]="true" fileName="Resultater Loddkonk" ></dxo-export>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+    
+        <dxi-column dataField="Position" caption="#" [width]="40"></dxi-column>
+        <dxi-column dataField="Name" caption="Lag"></dxi-column>
+        <dxi-column dataField="Points" caption="Poeng"></dxi-column>
+        <dxi-column dataField="TotalCQPoints" caption="CQ" ></dxi-column>
+    
+    </dx-data-grid>
+  </div>
+
+  <div #riders class="flex-container-col-2">
+    
+      <h3>{{selectedLotteryTeamName}}</h3>
+      <dx-data-grid id="gridContainer"
+        [dataSource]="dataSourceBikeRiders"
+        keyExpr="BikeRiderDetailId"
+        [showBorders]="true"
+        [hoverStateEnabled]="true"
+        [allowColumnResizing]="true"
+        [selectedRowKeys]="[]"
+        [height]="600"
+        (onRowClick)="bikeRiderClicked($event, results)">
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-export [enabled]="true" fileName="LagRyttere" ></dxo-export>
+    
+        <dxi-column dataField="BikeRiderName" caption="Rytter"></dxi-column>
+        <dxi-column dataField="Points" caption="Poeng" [width]="50"></dxi-column>
+        <dxi-column dataField="CQPoints" caption="CQ" [width]="50"></dxi-column>
+        <dxi-column dataField="RiderIndexTwoDecimals" caption="Indeks" [width]="50" cellTemplate="riderIndexTemplate"></dxi-column>
+  
+        <div *dxTemplate="let d of 'riderIndexTemplate'" [class]="d.data.RiderIndex < 0.5 ? 'red' : d.data.RiderIndex >= 0.5 && d.data.RiderIndex <= 1 ? 'orange' : d.data.RiderIndex > 1 && d.data.RiderIndex < 2 ? 'yellow' : d.data.RiderIndex >= 2 && d.data.RiderIndex < 3 ? 'green' : 'blue'">
+          <div class="riderindex">{{d.data.RiderIndexTwoDecimals}}</div>
+      </div>
+    </dx-data-grid>
+    <div #results>
+      <app-stats-bikeriderresults [selectedBikeRiderName]="selectedBikeRiderName"></app-stats-bikeriderresults>
+    </div>
+  </div>
+</div>
+  

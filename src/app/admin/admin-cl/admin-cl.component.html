@@ -1,0 +1,109 @@
+<dx-box  direction="row" width="100%" class="flex-container ">
+    <dxi-item [ratio]="1">
+      <dx-data-grid id="gridContainer"
+        [dataSource]="dataSource"
+        [allowColumnResizing]="true"
+        (onSelectionChanged)="onSelectionChanged($event)"
+        [showBorders]="true">
+        <dxo-editing 
+          [allowUpdating]="true"
+          [allowAdding]="true"
+          [allowDeleting]="true">
+        </dxo-editing>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+
+        <dxi-column dataField="TeamName" caption="Lag"></dxi-column>
+        <dxi-column dataField="TotalCQPoints" caption="CQ" [allowEditing]="false"></dxi-column>
+        <dxi-column dataField="Color" caption=" " cellTemplate="colorTemplate" editCellTemplate="editColorTemplate"></dxi-column>
+        <div *dxTemplate="let data of 'colorTemplate'">
+          <dx-color-box value="{{data.data.Color}}" [disabled]="true"></dx-color-box>
+        </div>
+        <div *dxTemplate="let data of 'editColorTemplate'">
+          <dx-color-box value="{{data.data.Color}}" (onValueChanged)="onColorValueChanged($event, data)"></dx-color-box>
+        </div>
+
+        <!-- <div *dxTemplate="let team of 'detail'"> -->
+            <!-- <div class="master-detail-caption">{{"Ryttere " + team.data.TeamName }}</div>
+            <dx-data-grid id="gridContainer"
+                [dataSource]="getRidersToTeam(team.data.CompetitionTeamId)"
+                keyExpr="BikeRiderId"
+                [allowColumnResizing]="true"
+                [showBorders]="true">
+                <dxo-selection mode="single"></dxo-selection>
+                <dxo-scrolling mode="virtual"></dxo-scrolling>
+                <dxo-editing 
+                  [allowUpdating]="true"
+                  [allowAdding]="true"
+                  [allowDeleting]="true">
+                </dxo-editing>
+
+                <dxi-column dataField="Number" caption="Nr" width="30" [allowEditing]="false"></dxi-column>
+                <dxi-column dataField="BikeRiderId" caption="Rytter" cellTemplate="bikeRiderTemplate" editCellTemplate="editBikeRiderTemplate" ></dxi-column>
+                <div *dxTemplate="let data of 'bikeRiderTemplate'">
+                  <span>{{data.data.BikeRiderName}}</span>
+                </div>
+                <div *dxTemplate="let data of 'editBikeRiderTemplate'">
+                  <dx-select-box [dataSource]="bikeRidersDataSource"
+                                displayExpr="BikeRiderName"
+                                searchExpr="BikeRiderName"
+                                valueExpr="BikeRiderId"
+                                showClearButton="true"
+                                [searchEnabled]="true"
+                                (onValueChanged)="onGridEditorValueChanged($event, data)"
+                                [value]="data.data.BikeRiderId"
+                                placeholder="Skriv inn navn for å søke..."
+                                noDataText=" ">
+                  </dx-select-box>
+                </div>
+            </dx-data-grid> -->
+            <!-- <dx-data-grid 
+                [dataSource]="team.data.BikeRiders"
+                [showBorders]="true"
+                [columnAutoWidth]="true">
+                    <dxi-column dataField="BikeRiderName" caption="Navn"></dxi-column>
+                    <dxi-column dataField="BikeTeamCode" caption="Lag"></dxi-column>
+                    <dxi-column dataField="Nationality" caption="Nasjonalitet"></dxi-column>
+                    <dxi-column dataField="CQPoints" caption="CQ"></dxi-column>
+            </dx-data-grid>        -->
+        <!-- </div> -->
+    </dx-data-grid>
+  </dxi-item>
+  <dxi-item [ratio]="1" style="margin-left: 20px">
+    <h3 >{{ selectedTeamName }}</h3>
+    <dx-data-grid #datagridRiders 
+        [dataSource]="dataSourceTeamRiders"
+        keyExpr="BikeRiderId"
+        [allowColumnResizing]="true"
+        [showBorders]="true">
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-editing  mode="cell"
+          [allowUpdating]="true"
+          [allowAdding]="true"
+          [allowDeleting]="true">
+        </dxo-editing>
+
+        <!-- <dxi-column dataField="Number" caption="Nr" width="30" [allowEditing]="false"></dxi-column> -->
+        <dxi-column dataField="BikeRiderId" caption="Rytter" cellTemplate="bikeRiderTemplate" editCellTemplate="editBikeRiderTemplate" ></dxi-column>
+        <dxi-column dataField="BikeTeamCode" caption="Lag"  [allowEditing]="false" ></dxi-column>
+        <dxi-column dataField="CQPoints" caption="CQ"  [allowEditing]="false" ></dxi-column>
+        <div *dxTemplate="let data of 'bikeRiderTemplate'">
+          <span>{{data.data.BikeRiderName}}</span>
+        </div>
+        <div *dxTemplate="let data of 'editBikeRiderTemplate'">
+          <dx-select-box [dataSource]="bikeRidersDataSource"
+                        displayExpr="BikeRiderName"
+                        searchExpr="BikeRiderName"
+                        valueExpr="BikeRiderId"
+                        showClearButton="true"
+                        [searchEnabled]="true"
+                        (onValueChanged)="onGridEditorValueChanged($event, data)"
+                        [value]="data.data.BikeRiderId"
+                        placeholder="Skriv inn navn for å søke..."
+                        noDataText=" ">
+          </dx-select-box>
+        </div>
+    </dx-data-grid>
+  </dxi-item>
+</dx-box>

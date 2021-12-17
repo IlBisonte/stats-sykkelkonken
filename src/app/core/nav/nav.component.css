@@ -1,0 +1,139 @@
+.nav-sykkelkonken {
+    height: 50px;
+    background-color: #4c6a8a;
+    color: #fff;
+}
+::ng-deep div.dx-menu-vertical ul {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #4c6a8a;
+    display: inline-block;
+    list-style-type: none;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  } 
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  } 
+
+  .boxMenu {
+    background-color: #4c6a8a;
+    color: #fff;
+  }
+
+  /* .main-menu  {
+    background-color: #4c6a8a;
+    color: #fff;
+    z-index: 99999999;
+  } */
+
+
+
+  ::ng-deep  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 50px;
+  }
+  
+  ::ng-deep .sidenav li {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  ::ng-deep .sidenav li:hover {
+    color: #f1f1f1;
+  }
+  
+  ::ng-deep .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  header {
+    height: 50px;
+    overflow: visible !important;
+    background-color: #4c6a8a;
+  }
+
+  ::ng-deep .menubtn {
+    position: relative;
+    /* left: 5%; */
+    left: 30px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size:30px;
+    cursor:pointer;
+    float:left;
+    color: #f1f1f1;
+    z-index: 2;
+  }
+
+  ::ng-deep .selectYear {
+    position: relative;
+    right: 50px;
+    top: 8px;
+    float: right;
+    width: 100px;
+  }
+
+  ::ng-deep .selectedMenu {
+    position: relative;
+    left: 30px;
+    top: 17px;
+    float: left;
+    font-weight: bold;
+    color: #f1f1f1;
+    cursor:pointer;
+  }
+
+  ::ng-deep .loginuser {
+    position: relative;
+    right: -85px;
+    top: 15px;
+    float: right;
+    font-size: 25px;
+    color: #fafafa;
+    cursor:pointer;
+  }
+
+  ::ng-deep .logoutuser {
+    position: relative;
+    right: -90px;
+    top: 15px;
+    float: right;
+    font-size: 25px;
+    color: #fafafa;
+    cursor:pointer;
+  }
+  
+    /* @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav li {font-size: 18px;}
+  } */

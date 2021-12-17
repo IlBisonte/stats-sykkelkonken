@@ -1,0 +1,11 @@
+
+::ng-deep .list-container {
+    width: 25%;
+    height: auto;
+    background-color: white;
+  }
+  
+  .listcompteams {
+    float: left;
+    font-size: 12px;
+  }

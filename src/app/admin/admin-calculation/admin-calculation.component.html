@@ -1,0 +1,188 @@
+<form >
+  <div class="flex-container">
+    <div class="flex-container-col">
+      <dx-data-grid 
+          #gridBikeRaces
+          id="gridContainer"
+          [dataSource]="bikeRaceDataSource"
+          keyExpr="BikeRaceId"
+          [showBorders]="true"
+          [hoverStateEnabled]="true"
+          [allowColumnResizing]="true"
+          (onSelectionChanged)="onSelectionChanged($event, results)"
+          [height]="800"
+          [selectedRowKeys]="[]"
+          [columnHidingEnabled]="true">
+          <dxo-editing 
+              mode="row" [useIcons]="true"
+              [allowUpdating]="isAdmin" [allowDeleting]="isAdmin"
+              [allowAdding]="isAdmin"></dxo-editing>
+          <dxo-selection mode="single"></dxo-selection>
+          <dxo-scrolling mode="virtual"></dxo-scrolling>
+          <dxo-search-panel [visible]="true"></dxo-search-panel>
+          <dxo-export [enabled]="true" fileName="Ritt" ></dxo-export>
+          <dxi-column dataField="Name" caption="Ritt" ><dxi-validation-rule type="required"></dxi-validation-rule></dxi-column>
+          <dxi-column dataField="StartDateToddMMM" editCellTemplate="startDateEditTemplate" caption="Start" [width]="65" [hidingPriority]="5">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+          </dxi-column>
+          <dxi-column dataField="FinishDateToddMMM" editCellTemplate="finishDateEditTemplate" caption="Slutt" [width]="65" [hidingPriority]="4"><dxi-validation-rule type="required"></dxi-validation-rule></dxi-column>
+          <!-- <dxi-column dataField="CountryName" caption="Land" [visible]="isAdmin"></dxi-column> -->
+          <dxi-column dataField="NoOfStages" caption="Etapper" [width]="75" cellTemplate="cellTemplateNoOfStages" [hidingPriority]="3"></dxi-column>
+          <dxi-column dataField="IsMonument" caption="Monument" [width]="75" [visible]="isAdmin" [hidingPriority]="2"></dxi-column>
+          <dxi-column dataField="IsCalculated" caption="Utregnet" [width]="75" [allowEditing]="false" [hidingPriority]="1" ></dxi-column>
+          <dxi-column dataField="Cancelled" caption="Kansellert" [visible]="isAdmin" [width]="75" [hidingPriority]="0"></dxi-column>
+          <dxi-column dataField="BikeRiderWinner" caption="Vinner" ></dxi-column>
+
+          <div *dxTemplate="let data of 'startDateEditTemplate'">
+            <dx-date-box
+              [value]="data.data.StartDate"  displayFormat="dd.MM.yyyy" (onFocusIn)="focusDate($event)" (onValueChanged)="onStartDateChanged($event, data)">
+            </dx-date-box>
+        </div>
+        <div *dxTemplate="let data of 'finishDateEditTemplate'">
+          <dx-date-box
+            [value]="data.data.FinishDate" displayFormat="dd.MM.yyyy" (onFocusIn)="focusDate($event)" (onValueChanged)="onFinishDateChanged($event, data)">
+          </dx-date-box>
+        </div>
+        <div *dxTemplate="let data of 'isCalculatedEditTemplate'">
+          <div></div>
+        </div>
+        <div *dxTemplate="let data of 'cellTemplateNoOfStages'">
+          <span *ngIf="data.data.NoOfStages > 0">{{data.data.NoOfStages}}</span>
+        </div>
+      </dx-data-grid>
+    </div>
+    <div #results class="flex-container-col">
+      <h3>{{selectedBikeRaceName}}</h3>
+        
+        <dx-tabs
+            #apiTabs
+            [dataSource]="tabs"
+            [selectedIndex]="selectedTabIndex"
+            (onItemClick)="selectTab($event)">
+        </dx-tabs>
+        <div *ngIf="selectedTabIndex === 0">
+          <dx-data-grid 
+            #gridBikeRaceResults
+            [dataSource]="bikeRaceResultsDataSource"
+            keyExpr="Position"
+            [showBorders]="true"
+            [hoverStateEnabled]="true"
+            [allowColumnResizing]="true"
+            [height]="750"
+            (onRowUpdating)="onUpdateBikeRaceResults">
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+            <dxo-editing 
+              mode="cell"
+              [allowUpdating]="isAdmin"
+              [allowAdding]="false">
+          </dxo-editing>
+            <dxi-column dataField="Position" caption="Nr" width="30" [allowEditing]="false"></dxi-column>
+            <dxi-column dataField="BikeRiderId" caption="Rytter" cellTemplate="bikeRiderTemplate" editCellTemplate="editBikeRiderTemplate" ></dxi-column>
+            <dxi-column dataField="Points" caption="Poeng" width="50" [allowEditing]="false"></dxi-column>
+            <div *dxTemplate="let data of 'bikeRiderTemplate'">
+                <span>{{data.data.BikeRiderName}}</span>
+            </div>
+            <div *dxTemplate="let data of 'editBikeRiderTemplate'">
+                <dx-select-box [dataSource]="bikeRidersDataSource"
+                              displayExpr="BikeRiderName"
+                              searchExpr="BikeRiderName"
+                              valueExpr="BikeRiderId"
+                              showClearButton="true"
+                              [searchEnabled]="true"
+                              (onValueChanged)="onGridEditorValueChanged($event, data)"
+                              [value]="data.data.BikeRiderId"
+                              placeholder="Skriv inn navn for å søke..."
+                              noDataText=" "
+                              (onFocusOut)="onFocusOutBikeRider($event)"
+                              (onKeyDown)="onKeyDownBikeRider($event)">
+                </dx-select-box>
+              </div>
+          </dx-data-grid>
+        </div>
+        
+        <div *ngIf="selectedTabIndex === 1">
+          <dx-data-grid 
+              [dataSource]="stageResultsDataSource"
+              [showBorders]="true"
+              [hoverStateEnabled]="true"
+              [allowColumnResizing]="true"
+              [height]="750"
+              [selectedRowKeys]="[]">
+              <dxo-selection mode="single"></dxo-selection>
+              <dxo-group-panel [visible]="true"></dxo-group-panel>
+              <dxo-scrolling mode="virtual"></dxo-scrolling>
+              <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+              <dxo-export [enabled]="true" [fileName]="stageFileName" ></dxo-export>
+              <dxo-editing 
+                mode="cell"
+                [allowUpdating]="isAdmin"
+                [allowAdding]="false">
+              </dxo-editing>
+              <dxi-column dataField="StagePosition" caption="Nr" [width]="30"  [allowEditing]="false"></dxi-column>
+              <dxi-column dataField="StageNo" caption="Etappenr" [groupIndex]="0"  [allowEditing]="false"></dxi-column>
+              <dxi-column dataField="BikeRiderId" caption="Rytter" cellTemplate="bikeRiderTemplate" editCellTemplate="editBikeRiderTemplate"></dxi-column>
+              <dxi-column dataField="Points" caption="Poeng" width="50"  [allowEditing]="false"></dxi-column>
+              <div *dxTemplate="let data of 'bikeRiderTemplate'">
+                  <span>{{data.data.BikeRiderName}}</span>
+              </div>
+              <div *dxTemplate="let data of 'editBikeRiderTemplate'">
+                  <dx-select-box [dataSource]="bikeRidersDataSource"
+                                displayExpr="BikeRiderName"
+                                searchExpr="BikeRiderName"
+                                valueExpr="BikeRiderId"
+                                showClearButton="true"
+                                [searchEnabled]="true"
+                                placeholder="Skriv inn navn for å søke..."
+                                noDataText=" "
+                                (onValueChanged)="onGridEditorValueChanged($event, data)"
+                                [value]="data.data.BikeRiderId">
+                  </dx-select-box>
+                </div>
+          </dx-data-grid>
+        </div>
+        <div *ngIf="selectedTabIndex === 2">
+          <dx-data-grid 
+            [dataSource]="leaderJerseyDataSource"
+            [showBorders]="true"
+            [hoverStateEnabled]="true"
+            [allowColumnResizing]="true"
+            [height]="750"
+            [selectedRowKeys]="[]">
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+            <dxo-editing 
+              mode="cell"
+              [allowUpdating]="isAdmin"
+              [allowAdding]="false">
+            </dxo-editing>
+            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+            <dxo-export [enabled]="true" [fileName]="stageFileName" ></dxo-export>
+            <dxi-column dataField="LeaderJerseyPosition" caption="Nr" width="30" [allowEditing]="false"></dxi-column>
+            <dxi-column dataField="LeaderJerseyName" caption="Trøye"  [groupIndex]="0" [allowEditing]="false"></dxi-column>
+            <dxi-column dataField="BikeRiderId" caption="Rytter" cellTemplate="bikeRiderTemplate" editCellTemplate="editBikeRiderTemplate"></dxi-column>
+            <dxi-column dataField="Points" caption="Poeng" width="50" [allowEditing]="false"></dxi-column>
+            <div *dxTemplate="let data of 'bikeRiderTemplate'">
+              <span>{{data.data.BikeRiderName}}</span>
+            </div>
+            <div *dxTemplate="let data of 'editBikeRiderTemplate'">
+              <dx-select-box [dataSource]="bikeRidersDataSource"
+                            displayExpr="BikeRiderName"
+                            searchExpr="BikeRiderName"
+                            valueExpr="BikeRiderId"
+                            showClearButton="true"
+                            [searchEnabled]="true"
+                            (onValueChanged)="onGridEditorValueChanged($event, data)"
+                            [value]="data.data.BikeRiderId"
+                            placeholder="Skriv inn navn for å søke..."
+                            noDataText=" "
+                            (onFocusOut)="onFocusOutBikeRider($event)"
+                            (onKeyDown)="onKeyDownBikeRider($event)">
+              </dx-select-box>
+            </div>
+          </dx-data-grid>
+        </div>
+    </div>
+  </div>
+</form>

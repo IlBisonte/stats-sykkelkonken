@@ -1,0 +1,62 @@
+
+
+<div *ngIf="showBikeRiderSelect" class="optionsStatsSankey">
+    <div class="caption">Velg rytter</div>
+    
+    <div class="optionStatsSankey">
+        <dx-select-box
+            [dataSource]="bikeRiders"
+            displayExpr="BikeRiderName"
+            valueExpr="BikeRiderDetailId"
+            [(value)]="selectedBikeRiderDetailId"
+            (onValueChanged)="onBikeRiderIdChanged($event)"
+            [searchEnabled]="true"
+            [width]="500"
+            fieldTemplate="field">
+
+            <div *dxTemplate="let data of 'field'">
+                <div >
+                    <div >
+                        <dx-text-box class="product-name" 
+                            [value]="data && data.BikeRiderName" 
+                            [readOnly]="true"
+                        ></dx-text-box>
+                    </div>
+                </div>
+            </div>
+            <div *dxTemplate="let data of 'item'">
+                <div >
+                    <div >
+                        {{data.BikeRiderName}} - {{data.Points}}
+                    </div>
+                </div>
+            </div>
+        </dx-select-box>
+
+    </div>
+</div>
+<dx-sankey id="sankey"
+    [dataSource]="dataSourceSankeyBikeRider"
+    sourceField="category"
+    targetField="categoryTarget"
+    weightField="points"
+    title="Fordeling av poeng per ritt"
+    style="margin: 10px">
+    <dxo-export [enabled]="true" fileName="Fordeling av poeng per ritt" ></dxo-export>
+    <dxo-tooltip 
+        [enabled]="true"
+        [customizeLinkTooltip]="customizeLinkTooltip"
+        [customizeNodeTooltip]="customizeNodeTooltip">
+    </dxo-tooltip>
+    <dxo-label 
+        [visible]="true"
+        [customizeText]="customizeText">
+    </dxo-label>
+    <dxo-link 
+        colorMode="gradient">
+    </dxo-link>
+    <dxo-node 
+        [width]="8"
+        [padding]="30">
+    </dxo-node>
+</dx-sankey>

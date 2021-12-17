@@ -1,0 +1,53 @@
+
+
+.logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.logo img {
+  width: 30%;
+  height: 30%;
+}
+
+.login {
+  /* position: absolute;
+  top: 12px;
+  right: 0; */
+}
+
+.login img {
+  width: 15%;
+  height: 15%;
+}
+
+.login .input {
+  text-align: center;
+  background-color: #4c6a8a;
+  border-radius: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.login .dx-textbox {
+  width: 200px;
+}
+
+.login table tr > td {
+  padding-right: 8px;
+}
+
+.login .error {
+  padding: 10px;
+  margin-right: 16px;
+  background-color: #B00020;
+  font-size: small;
+  border-radius: 5px;
+}
+
+.dx-icon-user, .dx-icon-key {
+  font-size: medium;
+}
