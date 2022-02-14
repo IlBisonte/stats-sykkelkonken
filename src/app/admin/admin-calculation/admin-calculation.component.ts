@@ -71,8 +71,8 @@ export class AdminCalculationComponent implements OnInit {
           BikeRaceDetailId: key.BikeRaceDetailId,
           BikeRaceId: key.BikeRaceId,
           Name: values.Name ? values.Name : key.Name,
-          StartDate: values.StartDate ? values.StartDate : values.StartDateToddMMyyyy ? values.StartDateToddMMyyyy : key.StartDate,
-          FinishDate: values.FinishDate ? values.FinishDate : values.FinishDateToddMMyyyy ? values.FinishDateToddMMyyyy : key.FinishDate,
+          StartDate: values.StartDate ? values.StartDate : values.StartDateToddMMM ? values.StartDateToddMMM : key.StartDate,
+          FinishDate: values.FinishDate ? values.FinishDate : values.FinishDateToddMMM ? values.FinishDateToddMMM : key.FinishDate,
           CountryName: values.CountryName ? values.CountryName : key.CountryName,
           NoOfStages: values.NoOfStages !== null && values.NoOfStages !== undefined ? values.NoOfStages : key.NoOfStages,
           BikeRaceCategoryId: 1,
@@ -93,10 +93,10 @@ export class AdminCalculationComponent implements OnInit {
         debugger;
         // values.SelectedDate = this.selectedDate;
         // values.EmployeeId = this.selectedEmployeeId;
-        let startDate = moment(values.StartDateToddMMyyyy);
-        let finishDate = moment(values.FinishDateToddMMyyyy);
-        values.StartDateToddMMyyyy = moment(startDate).toISOString();
-        values.FinishDateToddMMyyyy = moment(finishDate).toISOString();
+        let startDate = moment(values.StartDateToddMMM);
+        let finishDate = moment(values.FinishDateToddMMM);
+        values.StartDateToddMMM = moment(startDate).toISOString();
+        values.FinishDateToddMMM = moment(finishDate).toISOString();
         values.Year = this.navService.selectedYear;
         return this.adminService.addBikeRace(values, startDate.format("DD.MM.YYYY"), finishDate.format("DD.MM.YYYY")).toPromise().catch(error =>  
           this.logOutUser()

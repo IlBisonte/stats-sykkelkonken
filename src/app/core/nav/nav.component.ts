@@ -74,6 +74,7 @@ export class NavComponent implements OnInit {
     for (let i = 2019; i <= new Date().getFullYear(); i++) {
       this.years.push(i);
     }    
+    this.years.push(2022);//todo remove
     this.selectedYear = this.navService.selectedYear;
     if (this.selectedYear === null || this.selectedYear === undefined || this.selectedYear === 0) {
       this.selectedYear = new Date().getFullYear();
@@ -194,6 +195,10 @@ export class NavComponent implements OnInit {
         itemAdmin.module = "/admin/app-admin-lottery";
         menu.items.push(itemAdmin);
         itemAdmin = new NavMenu();
+        itemAdmin.moduleName = "Lag Ungdomskonk";
+        itemAdmin.module = "/admin/app-admin-youth";
+        menu.items.push(itemAdmin);
+        itemAdmin = new NavMenu();
         itemAdmin.moduleName = "Importer Grunndata";
         itemAdmin.module = "/admin/admin-import-from-cq";
         menu.items.push(itemAdmin);
@@ -225,6 +230,10 @@ export class NavComponent implements OnInit {
       itemMonuments.moduleName = "Monumentene";
       itemMonuments.module = "/results/monuments";
       menu.items.push(itemMonuments);
+      let itemYouth = new NavMenu();
+      itemYouth.moduleName = "Ungdomskonk";
+      itemYouth.module = "/results/youth";
+      menu.items.push(itemYouth);
       let itemBikeRaceResults = new NavMenu();
       itemBikeRaceResults.moduleName = "Per Sykkelritt";
       itemBikeRaceResults.module = "/results/result-bikerace";

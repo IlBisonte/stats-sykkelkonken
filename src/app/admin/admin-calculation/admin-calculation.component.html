@@ -22,10 +22,10 @@
           <dxo-search-panel [visible]="true"></dxo-search-panel>
           <dxo-export [enabled]="true" fileName="Ritt" ></dxo-export>
           <dxi-column dataField="Name" caption="Ritt" ><dxi-validation-rule type="required"></dxi-validation-rule></dxi-column>
-          <dxi-column dataField="StartDateToddMMM" editCellTemplate="startDateEditTemplate" caption="Start" [width]="65" [hidingPriority]="5">
+          <dxi-column dataField="StartDateToddMMM" editCellTemplate="startDateEditTemplate" caption="Start" [width]="125" [hidingPriority]="5">
             <dxi-validation-rule type="required"></dxi-validation-rule>
           </dxi-column>
-          <dxi-column dataField="FinishDateToddMMM" editCellTemplate="finishDateEditTemplate" caption="Slutt" [width]="65" [hidingPriority]="4"><dxi-validation-rule type="required"></dxi-validation-rule></dxi-column>
+          <dxi-column dataField="FinishDateToddMMM" editCellTemplate="finishDateEditTemplate" caption="Slutt" [width]="125" [hidingPriority]="4"><dxi-validation-rule type="required"></dxi-validation-rule></dxi-column>
           <!-- <dxi-column dataField="CountryName" caption="Land" [visible]="isAdmin"></dxi-column> -->
           <dxi-column dataField="NoOfStages" caption="Etapper" [width]="75" cellTemplate="cellTemplateNoOfStages" [hidingPriority]="3"></dxi-column>
           <dxi-column dataField="IsMonument" caption="Monument" [width]="75" [visible]="isAdmin" [hidingPriority]="2"></dxi-column>
@@ -35,12 +35,12 @@
 
           <div *dxTemplate="let data of 'startDateEditTemplate'">
             <dx-date-box
-              [value]="data.data.StartDate"  displayFormat="dd.MM.yyyy" (onFocusIn)="focusDate($event)" (onValueChanged)="onStartDateChanged($event, data)">
+              [value]="data.data.StartDate"  displayFormat="dd.MM.yy" (onFocusIn)="focusDate($event)" (onValueChanged)="onStartDateChanged($event, data)">
             </dx-date-box>
         </div>
         <div *dxTemplate="let data of 'finishDateEditTemplate'">
           <dx-date-box
-            [value]="data.data.FinishDate" displayFormat="dd.MM.yyyy" (onFocusIn)="focusDate($event)" (onValueChanged)="onFinishDateChanged($event, data)">
+            [value]="data.data.FinishDate" displayFormat="dd.MM.yy" (onFocusIn)="focusDate($event)" (onValueChanged)="onFinishDateChanged($event, data)">
           </dx-date-box>
         </div>
         <div *dxTemplate="let data of 'isCalculatedEditTemplate'">

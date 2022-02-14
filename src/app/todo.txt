@@ -3,3 +3,4 @@ Lage sesongplasseringschart for CL
 I stats-bikerace-victories(Antall pallplasseringer) må det legges inn shortname på sykkelritt i "Rittseiere"-kolonnen
 
 
+ved firebase deploy får en feil om at http://direct.ams.no/sykkelkonken.service ikke kan nås pga http

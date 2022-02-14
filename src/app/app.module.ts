@@ -41,6 +41,8 @@ import { ResultBikeraceRidersComponent } from './results/result-bikerace-riders/
 import { StatsBikeriderSankeyComponent } from './stats_competition/stats-bikerider-sankey/stats-bikerider-sankey.component';
 import { StatsCompetitionteamBikeridersSankeyComponent } from './stats_competition/stats-competitionteam-bikeriders-sankey/stats-competitionteam-bikeriders-sankey.component';
 import { AdminSeasonplacementComponent } from './admin/admin-seasonplacement/admin-seasonplacement.component';
+import { ResultYouthComponent } from './results/result-youth/result-youth.component';
+import { AdminYouthComponent } from './admin/admin-youth/admin-youth.component';
 // import { RegisterUserComponent } from './login/register-user/register-user.component';
 
 export function appInit(configService: ConfigService) {
@@ -76,6 +78,8 @@ export function appInit(configService: ConfigService) {
     StatsBikeriderSankeyComponent,
     StatsCompetitionteamBikeridersSankeyComponent,
     AdminSeasonplacementComponent,
+    ResultYouthComponent,
+    AdminYouthComponent,
     // RegisterUserComponent
   ],
   imports: [

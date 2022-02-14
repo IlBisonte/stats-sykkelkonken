@@ -77,6 +77,11 @@ export class HallOfFameComponent implements OnInit {
       Year: 2020,
       Points: 1178,
     });
+    this.victoryTeams.push({
+      TeamName: "Wheel of Salvatore",
+      Year: 2021,
+      Points: 1797,
+    });
   }
 
   setVictoryTeamsCL() {
@@ -130,6 +135,11 @@ export class HallOfFameComponent implements OnInit {
       Year: 2020,
       Points: 1038,
     });
+    this.victoryTeamsCL.push({
+      TeamName: "IlBisonte",
+      Year: 2021,
+      Points: 1286,
+    });
   }
 
   setVictoryTeamsMonuments() {
@@ -168,13 +178,18 @@ export class HallOfFameComponent implements OnInit {
       Year: 2020,
       Points: 477,
     });
+    this.victoryTeamsMonuments.push({
+      TeamName: "Ighli",
+      Year: 2021,
+      Points: 657,
+    });
   }
 
   setRiderRecords() {
     this.listRiderRecords.push({
       RecordName: "Høyeste poengsum sesong:",
-      RiderNameAndYear: "ROGLIC Primoz - 2019",
-      Points: 397,
+      RiderNameAndYear: "POGACAR Tadej - 2021",
+      Points: 545,
     });
     this.listRiderRecords.push({
       RecordName: "Høyeste index sesong:",
@@ -183,13 +198,13 @@ export class HallOfFameComponent implements OnInit {
     });
     this.listRiderRecords.push({
       RecordName: "Høyeste poengsum enkeltritt:",
-      RiderNameAndYear: "POGACAR Tadej - TdF 2020",
-      Points: "204",
+      RiderNameAndYear: "POGACAR Tadej - TdF 2021",
+      Points: "205",
     });
     this.listRiderRecords.push({
-      RecordName: "Høyeste poengsum sesong 2019-2020:",
+      RecordName: "Høyeste poengsum sesong 2019-2021:",
       RiderNameAndYear: "ROGLIC Primoz",
-      Points: "773",
+      Points: "1137",
     });
     this.listRiderRecords.push({
       RecordName: "Mest valgte rytter:",
