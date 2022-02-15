@@ -74,7 +74,6 @@ export class NavComponent implements OnInit {
     for (let i = 2019; i <= new Date().getFullYear(); i++) {
       this.years.push(i);
     }    
-    this.years.push(2022);//todo remove
     this.selectedYear = this.navService.selectedYear;
     if (this.selectedYear === null || this.selectedYear === undefined || this.selectedYear === 0) {
       this.selectedYear = new Date().getFullYear();
