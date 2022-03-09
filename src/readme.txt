@@ -13,3 +13,20 @@ Viser utvidet tooltip med rankingtrend i sesongplasseringschartet
 
 1.0.7
 Ny tabell BikeRaceSeasonPlacement for å kunne sette administrere hvilke sykkelritt som skal vises i sesongplasseringsgrafen
+
+1.0.8
+Ungdomskonk. Admin og resultater.
+Fikset "legg til sykkelritt" i "admin-utregning"
+
+
+
+
+
+firebase deploy
+Henter fra katalog dist/stats-sykkelkonken så appen må bygges med "ng build --prod" før "firebase deploy" kjøres
+Må ha web.config med <action type="Rewrite" url="/index.html" /> (må kanskje kopieres fra et annet sted, la inn i assets-folder)
+Må ha index.html med <base href="/">
+Per nå kan ikke http://direct.ams.no/sykkelkonken.service nås siden den blir servet fra http
+
+
+serviceurl finnes i config.json

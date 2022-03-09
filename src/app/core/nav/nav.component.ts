@@ -194,6 +194,10 @@ export class NavComponent implements OnInit {
         itemAdmin.module = "/admin/app-admin-lottery";
         menu.items.push(itemAdmin);
         itemAdmin = new NavMenu();
+        itemAdmin.moduleName = "Lag Ungdomskonk";
+        itemAdmin.module = "/admin/app-admin-youth";
+        menu.items.push(itemAdmin);
+        itemAdmin = new NavMenu();
         itemAdmin.moduleName = "Importer Grunndata";
         itemAdmin.module = "/admin/admin-import-from-cq";
         menu.items.push(itemAdmin);
@@ -225,6 +229,10 @@ export class NavComponent implements OnInit {
       itemMonuments.moduleName = "Monumentene";
       itemMonuments.module = "/results/monuments";
       menu.items.push(itemMonuments);
+      let itemYouth = new NavMenu();
+      itemYouth.moduleName = "Ungdomskonk";
+      itemYouth.module = "/results/youth";
+      menu.items.push(itemYouth);
       let itemBikeRaceResults = new NavMenu();
       itemBikeRaceResults.moduleName = "Per Sykkelritt";
       itemBikeRaceResults.module = "/results/result-bikerace";

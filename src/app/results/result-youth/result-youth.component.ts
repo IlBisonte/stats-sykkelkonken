@@ -1,37 +1,35 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ResultsService } from '../results/results.service';
-import { StatsCompetitionteamBikeridersSankeyComponent } from '../stats_competition/stats-competitionteam-bikeriders-sankey/stats-competitionteam-bikeriders-sankey.component';
-import { StatsBikeriderSankeyComponent } from '../stats_competition/stats-bikerider-sankey/stats-bikerider-sankey.component';
-import { StatsBikeriderresultsComponent } from './../stats/stats-bikeriderresults/stats-bikeriderresults/stats-bikeriderresults.component';
-import { NavService } from '../core/nav/nav.service';
-
+import { ResultsService } from '../../results/results.service';
+import { StatsCompetitionteamBikeridersSankeyComponent } from '../../stats_competition/stats-competitionteam-bikeriders-sankey/stats-competitionteam-bikeriders-sankey.component';
+import { StatsBikeriderSankeyComponent } from '../../stats_competition/stats-bikerider-sankey/stats-bikerider-sankey.component';
+import { StatsBikeriderresultsComponent } from './../../stats/stats-bikeriderresults/stats-bikeriderresults/stats-bikeriderresults.component';
+import { NavService } from '../../core/nav/nav.service';
 
 @Component({
-  selector: 'app-results',
-  templateUrl: './results.component.html',
-  styleUrls: ['./results.component.css']
+  selector: 'app-result-youth',
+  templateUrl: './result-youth.component.html',
+  styleUrls: ['./result-youth.component.css']
 })
-export class ResultsComponent implements OnInit {
-  dataSourceCompetitionTeams: any;
+export class ResultYouthComponent implements OnInit {
+
+  dataSourceYouthTeams: any;
   dataSourceBikeRiders: any;
   dataSourceBikeRiderResults: any;
   selectedCompetitionTeamId: number;
-  selectedCompetitionTeamName: string;
+  selectedYouthTeamName: string;
   selectedBikeRiderName: string;
   tabs: any[] = [
       {     
           id: 0,
           text: "Liste", 
       },
-      { 
-          id: 1,
-          text: "Grafisk",  
-      }
+      // { 
+      //     id: 1,
+      //     text: "Grafisk",  
+      // }
   ];
   selectedTabIndexCompTeamRiders = 0;
   selectedTabIndexBikeRider = 0;
-  loadingVisible = false;
-
   @ViewChild(StatsCompetitionteamBikeridersSankeyComponent, {static:false}) private statsCompetitionteamBikeridersSankeyComponent: StatsCompetitionteamBikeridersSankeyComponent;
   @ViewChild(StatsBikeriderresultsComponent, {static:false}) private bikeRiderResultComponent: StatsBikeriderresultsComponent;
   @ViewChild(StatsBikeriderSankeyComponent, {static:false}) private statsBikeriderSankeyComponent: StatsBikeriderSankeyComponent;
@@ -39,27 +37,25 @@ export class ResultsComponent implements OnInit {
   constructor(private resultsService: ResultsService, private navService: NavService) { }
 
   ngOnInit() {
-    this.getCompetitionTeams();
+    this.getYouthTeams();
   }
-  getCompetitionTeams() {
+  getYouthTeams() {
     debugger;
-    this.loadingVisible = true;
-    this.resultsService.getCompetitionTeamResults(this.navService.selectedYear).subscribe((result: any) => { // success path
+    this.resultsService.getYouthTeamResults(this.navService.selectedYear).subscribe((result: any) => { // success path
       debugger;
-      this.loadingVisible = false;
-      this.dataSourceCompetitionTeams = result;
+      this.dataSourceYouthTeams = result;
     }, error => { // error path;        
     });
   }
   
-  competitionTeamClicked(e, riders: HTMLElement) {
+  youthTeamClicked(e, riders: HTMLElement) {
     debugger;
     if (window.innerWidth < 800) {
     riders.scrollIntoView();
     }
     this.selectedCompetitionTeamId = e.key;
-    this.selectedCompetitionTeamName = e.data.Name;
-    this.resultsService.getCompetitionTeamBikeRiderResults(e.key).subscribe((result: any) => {
+    this.selectedYouthTeamName = e.data.Name;
+    this.resultsService.getYouthTeamBikeRiderResults(e.key).subscribe((result: any) => {
       debugger;
       this.dataSourceBikeRiders = result;
       this.statsCompetitionteamBikeridersSankeyComponent.getBikeRacePointsByBikeRiderDetailId(this.selectedCompetitionTeamId);

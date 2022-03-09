@@ -301,4 +301,73 @@ export class AdminService {
       }
       return this.http.put<any>(this.configService.config.serviceUrl + "/api/competitionteams/RemoveBikeRiderLotteryTeam", lotteryTeamRider);
     }
+
+    /* Youth */
+    
+    getYouthTeams(year: number) {
+      return this.http.get<any>(this.configService.config.serviceUrl + "/api/competitionteams/GetYouthTeams?year=" + year);
+    }
+
+    getRidersToYouthTeam(youthTeamId: number) {
+      return this.http.get<any>(this.configService.config.serviceUrl + "/api/competitionteams/GetRidersYouthTeam?youthTeamId=" + youthTeamId);
+    }
+    
+    insertYouthTeam(teamName: any, color: any, year: number): Observable<any> {
+      debugger;
+      let youthTeam = {
+        YouthTeamId: -1,
+        Name: teamName,
+        Color: color,
+        Year: year
+      }
+      return this.http.post<any>(this.configService.config.serviceUrl + '/api/competitionteams/InsertYouthTeam', youthTeam);
+    }
+    
+    updateYouthTeam(youthTeamId: any, teamName: any, color:any): Observable<any> {
+      debugger;
+      let youthTeam = {
+        YouthTeamId: youthTeamId,
+        Name: teamName,
+        Color: color,
+      }
+      return this.http.put<any>(this.configService.config.serviceUrl + '/api/competitionteams/UpdateYouthTeam', youthTeam);
+    }
+
+    removeYouthTeam(teamId: number) {
+      return this.http.delete<any>(this.configService.config.serviceUrl + "/api/competitionteams/RemoveYouthTeam?youthTeamId=" + teamId);
+    }
+
+    insertRiderYouthTeam(youthTeamId: any, bikeRiderId: any, year: number): Observable<any> {
+      debugger;
+      let youthTeamRider = {
+        YouthTeamId: youthTeamId,
+        BikeRiderId: bikeRiderId,
+        Year: year,
+      }
+      return this.http.post<any>(this.configService.config.serviceUrl + '/api/competitionteams/InsertBikeRiderYouthTeam', youthTeamRider);
+    }
+    
+    updateRiderYouthTeam(youthTeamId: any, origBikeRiderId: any, newBikeRiderId: any, year: number): Observable<any> {
+      debugger;
+      let youthTeamRider = {
+        YouthTeamId: youthTeamId,
+        OrigBikeRiderId: origBikeRiderId,
+        NewBikeRiderId: newBikeRiderId,
+        Year: year,
+      }
+      return this.http.put<any>(this.configService.config.serviceUrl + '/api/competitionteams/UpdateBikeRiderYouthTeam', youthTeamRider);
+    }
+
+    removeRiderYouthTeam(youthTeamId: number, bikeRiderId: any, year: number) {
+      let youthTeamRider = {
+        YouthTeamId: youthTeamId,
+        BikeRiderId: bikeRiderId,
+        Year: year,
+      }
+      return this.http.put<any>(this.configService.config.serviceUrl + "/api/competitionteams/RemoveBikeRiderYouthTeam", youthTeamRider);
+    }
+
+    getBikeRidersBySearchTextByYearYouth(searchText, year: number): Observable<any> {
+      return this.http.get<any>(this.configService.config.serviceUrl + '/api/bikerider/getbysearchtextYouth?searchtext=' + searchText + '&year=' + year);
+    }
 }

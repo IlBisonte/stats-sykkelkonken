@@ -1,4 +1,9 @@
-
+<dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true">
+</dx-load-panel>
 <div class="flex-container">
 <!-- <dx-box  direction="row" class="flex-container " width="100%"> -->
   <!-- <dxi-item [baseSize]="600" class="flex-container-col" style="margin-right: 20px"> -->
@@ -21,11 +26,15 @@
         <dxo-search-panel [visible]="true"></dxo-search-panel>
     
         <dxi-column dataField="Position" caption="#" [width]="40"></dxi-column>
-        <dxi-column dataField="Name" caption="Lag"></dxi-column>
+        <dxi-column dataField="Name" caption="Lag" cellTemplate="nameTemplate"></dxi-column>
         <dxi-column dataField="Points" caption="Poeng"></dxi-column>
         <dxi-column dataField="TotalCQPoints" caption="CQ" cellTemplate="cqPointsTemplate" [hidingPriority]="0"></dxi-column>
         <dxi-column dataField="RankingTrend" caption=" " cellTemplate="rankingTrendTemplate" [width]="30" [hidingPriority]="1" ></dxi-column>
     
+        <div *dxTemplate="let d of 'nameTemplate'" >
+          <div title="{{d.data.Note}}">{{d.data.Name}}<span *ngIf="d.data.Note != null">*</span></div>
+          
+        </div>
         <div *dxTemplate="let d of 'cqPointsTemplate'" >
           <div title="{{d.data.Note}}">{{d.data.TotalCQPoints}}<span *ngIf="d.data.TotalCQPoints > 8000">*</span></div>
           

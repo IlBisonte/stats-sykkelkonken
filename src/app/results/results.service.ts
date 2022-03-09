@@ -95,4 +95,15 @@ export class ResultsService {
         return this.http.get<any>(this.configService.config.serviceUrl + "/api/Result/GetLotteryTeamBikeRiderResults?lotteryTeamId=" + lotteryTeamId);
     }
 
+    /* Youth */
+    getYouthTeamResults(year: number): Observable<any> {
+      debugger;
+      return this.http.get<any>(this.configService.config.serviceUrl + "/api/Result/GetYouthTeamResults?year=" + year);
+    }
+
+    getYouthTeamBikeRiderResults(youthTeamId: number): Observable<any> {
+        debugger;
+        return this.http.get<any>(this.configService.config.serviceUrl + "/api/Result/GetYouthTeamBikeRiderResults?youthTeamId=" + youthTeamId);
+    }
+
 }
