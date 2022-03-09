@@ -30,6 +30,8 @@ export class ResultsComponent implements OnInit {
   ];
   selectedTabIndexCompTeamRiders = 0;
   selectedTabIndexBikeRider = 0;
+  loadingVisible = false;
+
   @ViewChild(StatsCompetitionteamBikeridersSankeyComponent, {static:false}) private statsCompetitionteamBikeridersSankeyComponent: StatsCompetitionteamBikeridersSankeyComponent;
   @ViewChild(StatsBikeriderresultsComponent, {static:false}) private bikeRiderResultComponent: StatsBikeriderresultsComponent;
   @ViewChild(StatsBikeriderSankeyComponent, {static:false}) private statsBikeriderSankeyComponent: StatsBikeriderSankeyComponent;
@@ -41,8 +43,10 @@ export class ResultsComponent implements OnInit {
   }
   getCompetitionTeams() {
     debugger;
+    this.loadingVisible = true;
     this.resultsService.getCompetitionTeamResults(this.navService.selectedYear).subscribe((result: any) => { // success path
       debugger;
+      this.loadingVisible = false;
       this.dataSourceCompetitionTeams = result;
     }, error => { // error path;        
     });

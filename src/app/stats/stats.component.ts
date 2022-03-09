@@ -26,6 +26,7 @@ export class StatsComponent implements OnInit {
           text: "Grafisk",  
       }
   ];
+  loadingVisible = false;
   @ViewChild(StatsBikeriderresultsComponent, {static:false}) private bikeRiderResultComponent: StatsBikeriderresultsComponent;
   @ViewChild(StatsBikeriderSankeyComponent, {static:false}) private statsBikeriderSankeyComponent: StatsBikeriderSankeyComponent;
 
@@ -37,8 +38,10 @@ export class StatsComponent implements OnInit {
 
   getBikeRiderStats() {
     debugger;
+    this.loadingVisible = true;
     this.statsService.getBikeRiderStats(this.navService.selectedYear).subscribe((result: any) => { // success path
       debugger;
+      this.loadingVisible = false;
       this.dataSourceRiderStats = result;
     }, error => { // error path;        
     });
