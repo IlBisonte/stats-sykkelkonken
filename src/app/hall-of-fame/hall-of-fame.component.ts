@@ -83,7 +83,7 @@ export class HallOfFameComponent implements OnInit {
       Points: 1797,
     });
     this.victoryTeams.push({
-      TeamName: "Ryfs",
+      TeamName: "Rufs",
       Year: 2022,
       Points: 1658,
     });
