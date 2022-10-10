@@ -82,6 +82,11 @@ export class HallOfFameComponent implements OnInit {
       Year: 2021,
       Points: 1797,
     });
+    this.victoryTeams.push({
+      TeamName: "Ryfs",
+      Year: 2022,
+      Points: 1658,
+    });
   }
 
   setVictoryTeamsCL() {
@@ -140,6 +145,11 @@ export class HallOfFameComponent implements OnInit {
       Year: 2021,
       Points: 1286,
     });
+    this.victoryTeamsCL.push({
+      TeamName: "Borud",
+      Year: 2022,
+      Points: 1360,
+    });
   }
 
   setVictoryTeamsMonuments() {
@@ -183,13 +193,18 @@ export class HallOfFameComponent implements OnInit {
       Year: 2021,
       Points: 657,
     });
+    this.victoryTeamsMonuments.push({
+      TeamName: "Ballack",
+      Year: 2022,
+      Points: 460,
+    });
   }
 
   setRiderRecords() {
     this.listRiderRecords.push({
       RecordName: "Høyeste poengsum sesong:",
-      RiderNameAndYear: "POGACAR Tadej - 2021",
-      Points: 545,
+      RiderNameAndYear: "POGACAR Tadej - 2022",
+      Points: 547,
     });
     this.listRiderRecords.push({
       RecordName: "Høyeste index sesong:",
@@ -202,9 +217,9 @@ export class HallOfFameComponent implements OnInit {
       Points: "205",
     });
     this.listRiderRecords.push({
-      RecordName: "Høyeste poengsum sesong 2019-2021:",
-      RiderNameAndYear: "ROGLIC Primoz",
-      Points: "1137",
+      RecordName: "Høyeste poengsum sesong 2019-2022:",
+      RiderNameAndYear: "POGACAR Tadej",
+      Points: "1606",
     });
     this.listRiderRecords.push({
       RecordName: "Mest valgte rytter:",
