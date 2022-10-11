@@ -18,7 +18,8 @@ Ny tabell BikeRaceSeasonPlacement for å kunne sette administrere hvilke sykkelr
 Ungdomskonk. Admin og resultater.
 Fikset "legg til sykkelritt" i "admin-utregning"
 
-
+1.0.9
+Deploy til azure
 
 
 
@@ -30,3 +31,6 @@ Per nå kan ikke http://direct.ams.no/sykkelkonken.service nås siden den blir s
 
 
 serviceurl finnes i config.json
+
+
+ved deploy til azure, slett web.config fra assets folder og legg inn på root
