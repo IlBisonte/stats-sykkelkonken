@@ -18,17 +18,17 @@ export class StatsCompetitionTeamService {
     }
 
     getCompetitionTeamStatsAllTime(): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/StatsCompetitionteam/GetCompetitionTeamStatsAllTime");
     }
 
     getCLTeamStatsAllTime(): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/StatsCompetitionteam/GetChampionsLeagueTeamStatsAllTime");
     }
 
     getCompetitionTeamResultPerBikeRace(year: number): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/StatsCompetitionteam/GetCompetitionTeamResultPerBikeRace?year=" + year);
     }
 

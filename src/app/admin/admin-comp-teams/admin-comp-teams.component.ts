@@ -23,7 +23,7 @@ export class AdminCompTeamsComponent implements OnInit {
   constructor(private adminService: AdminService, private loginService: LoginService, private navService: NavService, private configService: ConfigService) { }
 
   ngOnInit() {
-    debugger;
+    
     this.uploadCompetitionTeamsCrossListURL = this.configService.config.serviceUrl + "api/CompetitionTeams/ImportCompetitionTeams?year=" + this.navService.selectedYear;
     this.uploadCompetitionTeamsRowListURL = this.configService.config.serviceUrl + "api/CompetitionTeams/ImportCompetitionTeamsList?year=" + this.navService.selectedYear;
     this.getCompetitionTeams();
@@ -31,7 +31,7 @@ export class AdminCompTeamsComponent implements OnInit {
   }
 
   getBikeRiders(key) {
-    debugger;
+    
 
     var competitionTeam = this.dataSource.filter(x => x.CompetitionTeamId == key);
 
@@ -41,39 +41,39 @@ export class AdminCompTeamsComponent implements OnInit {
 }
 
   import() {
-    debugger;
+    
     this.adminService.importCompetitionTeams()
       .subscribe((result: any) => { // success path
-        debugger;
+        
       }, error => { // error path;        
       });
   }
 
   readFromPCS() {
-    debugger;
+    
     this.adminService.readFromPCS().subscribe((result: any) => { // success path
-      debugger;
+      
     }, error => { // error path;        
     });
   }
 
   removeCompetitionTeams() {
-    debugger;
+    
     this.adminService.removeCompetitionTeams().subscribe((result: any) => { // success path
-      debugger;
+      
     }, error => { // error path;        
     });
   }
 
   getCompetitionTeams() {
-    debugger;
+    
     this.loadingVisible = true;
     this.adminService.getCompetitionTeams(this.navService.selectedYear).subscribe((result: any) => { // success path
-      debugger;
+      
       this.loadingVisible = false;
       this.dataSource = result;
     }, error => { // error path; 
-      debugger;     
+           
       this.loadingVisible = false;  
       this.loginService.logout();
       location.reload();

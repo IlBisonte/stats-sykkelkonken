@@ -20,11 +20,11 @@ export class StatsBikeriderresultsComponent implements OnInit {
 
 
   showResultsToBikeRider(selectedBikeRiderDetailId) {
-    debugger;
+    
     this.fileName = "Poeng " + this.selectedBikeRiderName;
     this.getCompTeamsWithSelectedBikeRider(selectedBikeRiderDetailId);
     this.statsService.getBikeRiderResults(selectedBikeRiderDetailId, this.navService.selectedYear).subscribe((result: any) => {
-      debugger;
+      
       this.dataSourceBikeRiderResults = result;
     }, error => { // error path;        
     });
@@ -33,7 +33,7 @@ export class StatsBikeriderresultsComponent implements OnInit {
 
   getCompTeamsWithSelectedBikeRider(selectedBikeRiderDetailId) {
     this.statsService.getCompTeamsWithSelectedBikeRider(selectedBikeRiderDetailId).subscribe((result: any) => {
-      debugger;
+      
       this.listPickedByCompTeams = [];
       result.forEach(compTeamName => {
         this.listPickedByCompTeams.push(compTeamName);
@@ -44,7 +44,7 @@ export class StatsBikeriderresultsComponent implements OnInit {
   
   
   customSortingFunctionBikeRace (rowData) {
-    debugger;
+    
     return rowData.StartDate;
   }
   
@@ -86,7 +86,7 @@ export class StatsBikeriderresultsComponent implements OnInit {
   
   onCellPrepared(e) {
     if(e.rowType === "data" && e.column.dataField === "BikeRaceName") {
-      debugger;
+      
     }
   }
 

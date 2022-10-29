@@ -30,11 +30,11 @@ export class StatsResultPerBikeraceComponent implements OnInit {
   }
   
   getCompetitionTeams() {
-    debugger;
+    
     this.loadingVisible = true;
     let year = this.navService.selectedYear;
     this.statsService.getCompetitionTeams(year).subscribe((result: any) => { // success path
-      debugger;
+      
       this.competitionTeams = result;
       this.noOfCompTeam = this.competitionTeams.length;
       this.maxRank = this.competitionTeams.length;
@@ -45,10 +45,10 @@ export class StatsResultPerBikeraceComponent implements OnInit {
   }
 
   getCompetitionTeamResultPerBikeRace() {
-    debugger;
+    
     let year = this.navService.selectedYear;
     this.statsService.getCompetitionTeamResultPerBikeRace(year).subscribe((result: any) => { // success path
-      debugger;
+      
       this.loadingVisible = false;
       this.resultDataSource = result;
       this.minPoints = result.MinPoints;
@@ -100,7 +100,7 @@ export class StatsResultPerBikeraceComponent implements OnInit {
   }
 
   customizeLabel = (arg: any) => {
-    debugger;
+    
         return {
             visible: true,
             backgroundColor: "#ff7c7c",
@@ -111,7 +111,7 @@ export class StatsResultPerBikeraceComponent implements OnInit {
   }
   
   customizeTooltip = (arg: any) => {
-    debugger;
+    
     let node = "";
     let bikeRaceShortName = arg.argument;
     let competitionTeamName = arg.seriesName;
@@ -171,7 +171,7 @@ export class StatsResultPerBikeraceComponent implements OnInit {
   }
 
   onSelectedCompTeamChanged(e) {
-    debugger;
+    
     this.prepareChart(this.resultDataSource);
   }
 

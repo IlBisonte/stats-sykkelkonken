@@ -38,7 +38,7 @@ export class ConfigService {
     const promise = this.http.get(this.configUrl)
       .toPromise()
       .then((data: Config) => {
-        debugger;
+        
         this.config = { ...data }
         // Object.assign(this, data);
         return data;
@@ -63,7 +63,7 @@ export class ConfigService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    debugger;
+    
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);

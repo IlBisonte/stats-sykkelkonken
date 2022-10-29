@@ -14,11 +14,11 @@ export class HallOfFameComponent implements OnInit {
   listRiderRecords = [];
 
   constructor() {
-    debugger;
+    
    }
 
   ngOnInit() {
-    debugger;
+    
     this.setVictoryTeams();
     this.setVictoryTeamsCL();
     this.setVictoryTeamsMonuments();

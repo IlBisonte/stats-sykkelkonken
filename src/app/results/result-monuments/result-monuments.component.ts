@@ -21,43 +21,43 @@ export class ResultMonumentsComponent implements OnInit {
     this.getCompetitionTeams();
   }
   getCompetitionTeams() {
-    debugger;
+    
     this.resultsService.getCompetitionTeamResults_monuments(this.navService.selectedYear).subscribe((result: any) => { // success path
-      debugger;
+      
       this.dataSourceMonuments = result;
     }, error => { // error path;        
     });
   }
   
   competitionTeamClicked(e, riders: HTMLElement) {
-    debugger;
+    
     
     if (window.innerWidth < 800) {
       riders.scrollIntoView();
     }
     this.selectedCompetitionTeamName = e.data.Name;
     this.resultsService.getCompetitionTeamBikeRiderResults_monuments(e.key).subscribe((result: any) => {
-      debugger;
+      
       this.dataSourceBikeRiders = result;
     }, error => { // error path;        
     });
   }
   
   bikeRiderClicked(e, results: HTMLElement) {
-    debugger;
+    
     if (window.innerWidth < 800) {
       results.scrollIntoView();
     }
     this.selectedBikeRiderName = e.data.BikeRiderName;
     this.resultsService.getBikeRiderResults_monuments(e.key, this.navService.selectedYear).subscribe((result: any) => {
-      debugger;
+      
       this.dataSourceBikeRiderResults = result;
     }, error => { // error path;        
     });
   }
 
   onRowPrepared(e) {
-    debugger;
+    
     if (e.rowType === "data") {
       if (e.data.Position === 1) {
         e.rowElement.style.background = "#F8DD52";
@@ -72,7 +72,7 @@ export class ResultMonumentsComponent implements OnInit {
   
   
   calculateSummary(options) {
-    debugger;
+    
     // Calculating "customSummary1"
     if(options.name == "customSumTotalPoints") {
         switch(options.summaryProcess) {

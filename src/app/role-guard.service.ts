@@ -12,7 +12,7 @@ import decode from 'jwt-decode';
 export class RoleGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router, private loginService: LoginService) {}
   canActivate(route: ActivatedRouteSnapshot): boolean {
-      debugger;
+      
       if (this.loginService.currentUserValue.IsAdmin) {
         return true;
       }

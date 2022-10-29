@@ -167,7 +167,7 @@ export class StatsCompetitionteamSankeyComponent implements OnInit {
   }
 
   onCompetitionTeamIdChanged(e) {
-    debugger;
+    
     this.getCompetitionTeamPointsByBikeRaceCategory();
     this.statsCompetitionteamBikeridersSankeyComponent.getBikeRacePointsByBikeRiderDetailId(this.selectedCompTeamId);
     this.statsBikeriderSankeyComponent.getBikeRidersCompetitionTeam(this.selectedCompTeamId);
@@ -226,10 +226,10 @@ export class StatsCompetitionteamSankeyComponent implements OnInit {
   }
   
   getBikeRiderPointsByBikeRace(bikeRaceName: string) {
-    debugger;
+    
     let year = this.navService.selectedYear;
     this.statsService.getBikeRiderPointsByBikeRace(year, this.selectedCompTeamId, bikeRaceName).subscribe((result: any) => { // success path
-      debugger;
+      
       this.loadingVisible = false;
       this.bikeRaceSelected = true;
       this.bikeRiderSelected = false;
@@ -241,10 +241,10 @@ export class StatsCompetitionteamSankeyComponent implements OnInit {
   }
   
   getBikeRacePointsByBikeRider(bikeRiderName: string) {
-    debugger;
+    
     let year = this.navService.selectedYear;
     this.statsService.getBikeRacePointsByBikeRider(year, bikeRiderName).subscribe((result: any) => { // success path
-      debugger;
+      
       this.loadingVisible = false;
       this.bikeRiderSelected = true;
       this.bikeRaceSelected = false;
@@ -256,7 +256,7 @@ export class StatsCompetitionteamSankeyComponent implements OnInit {
   }
 
   previousCategory() {
-    debugger;
+    
     this.bikeRiderSelected = false;
     this.bikeRaceSelected = false;
     this.selectCategory(this.previousSource);
@@ -284,7 +284,7 @@ export class StatsCompetitionteamSankeyComponent implements OnInit {
   }
 
   onLinkClickBikeRider(target: string) {
-    debugger;
+    
     this.statsBikeriderSankeyComponent.onBikeRiderNameSelected(target);
   }
 

@@ -11,13 +11,13 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   constructor(public jwtHelper: JwtHelperService) {
-    debugger;
+    
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
   
   public isAuthenticated(): boolean {
-      debugger;
+      
       if (this.currentUserValue) {
         const token = this.currentUserValue.JwtToken;
         // Check whether the token is expired and return
@@ -51,7 +51,7 @@ export class AuthService {
   
 
 private loginData(result: any) {
-  debugger;
+  
   // store user details and jwt token in local storage to keep user logged in between page refreshes
   localStorage.setItem('currentUser', JSON.stringify(result));
   this.currentUserSubject.next(result);

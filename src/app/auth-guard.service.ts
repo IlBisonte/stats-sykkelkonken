@@ -7,7 +7,7 @@ import { LoginService } from '../app/core/login/login.service';
 export class AuthGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router, private loginService: LoginService) {}
   canActivate(): boolean {
-    debugger;
+    
     if (this.loginService.currentUserValue.IsAdmin) {
       return true;
     }

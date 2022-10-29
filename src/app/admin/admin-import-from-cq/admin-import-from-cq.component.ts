@@ -20,7 +20,7 @@ export class AdminImportFromCqComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
+    
     
     this.uploadRidersURL = this.configService.config.serviceUrl + "api/import/ImportBikeRiders?year=" + this.navService.selectedYear;
     this.uploadTeamsURL = this.configService.config.serviceUrl + "api/import/ImportBikeTeams";

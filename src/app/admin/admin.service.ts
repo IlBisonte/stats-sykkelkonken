@@ -46,12 +46,12 @@ export class AdminService {
     }
 
     getBikeRacesToCalculate(year: number, showCancelled: boolean): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerace/Get?year=" + year + "&showCancelled=" + showCancelled);
     }
 
     getBikeRaceSeasonPlacement(year: number): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerace/GetBikeRaceSeasonPlacement?year=" + year);
     }
     
@@ -69,7 +69,7 @@ export class AdminService {
   }
 
     addBikeRace(values: any, startDate: any, finishDate: any): Observable<any> {
-      debugger;
+      
       var bikeRace = {
         Name: values.Name,
         Year: values.Year,
@@ -84,29 +84,29 @@ export class AdminService {
     }
 
     updateBikeRace(bikeRace: any): Observable<any> {
-      debugger;
+      
 
       return this.http.put<any>(this.configService.config.serviceUrl + "/api/bikerace/Update", bikeRace);
     }
 
     deleteBikeRaceDetail(bikeRaceDetailId: any): Observable<any> {
-      debugger;
+      
 
       return this.http.delete<any>(this.configService.config.serviceUrl + "/api/bikerace/Delete?bikeRaceDetailId=" + bikeRaceDetailId);
     }
     
     getResultsToBikeRace(bikeRaceDetailId: number): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerace/GetResultsToCalculate?bikeRaceDetailId=" + bikeRaceDetailId);
     }
     
     getStageResultsToBikeRace(bikeRaceDetailId: number): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerace/GetStageResults?bikeRaceDetailId=" + bikeRaceDetailId);
     }
 
     updateStageResultToBikeRace(bikeRaceDetailId: number, stageNo: number, stagePosition: number, bikeRiderId: number) : Observable<any> {
-      debugger;
+      
       let stageResult = {
         BikeRaceDetailId: bikeRaceDetailId,
         StageNo: stageNo,
@@ -123,7 +123,7 @@ export class AdminService {
     }
 
     updateBikeRaceResult(bikeRaceDetailId: any, bikeRiderId: any, position: any): Observable<any> {
-      debugger;
+      
       let brr = {
         BikeRaceDetailId: bikeRaceDetailId,
         BikeRiderId: bikeRiderId,
@@ -133,7 +133,7 @@ export class AdminService {
     }
 
     getBikeRidersByIds(ids: any[]): Observable<any> {
-      debugger;
+      
       var sIds = JSON.stringify(ids);
       let requestOptions = {
         params: new HttpParams()
@@ -151,12 +151,12 @@ export class AdminService {
     }
 
     getLeaderJerseyResultsToBikeRace(bikeRaceDetailId: number): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerace/GetLeaderJerseyResultsToCalculate?bikeRaceDetailId=" + bikeRaceDetailId);
     }
 
     updateLeaderJerseyResult(bikeRaceDetailId: any, bikeRiderId: any, leaderJerseyId: any, position: any): Observable<any> {
-      debugger;
+      
       let leaderJerseyResult = {
         BikeRaceDetailId: bikeRaceDetailId,
         BikeRiderId: bikeRiderId,
@@ -177,7 +177,7 @@ export class AdminService {
     }
     
     insertChampionsLeagueTeam(teamName: any, color: any, year: number): Observable<any> {
-      debugger;
+      
       let clTeam = {
         ChampionsLeagueTeamId: -1,
         TeamName: teamName,
@@ -188,7 +188,7 @@ export class AdminService {
     }
     
     updateChampionsLeagueTeam(championsLeagueTeamId: any, teamName: any, color:any): Observable<any> {
-      debugger;
+      
       let clTeam = {
         ChampionsLeagueTeamId: championsLeagueTeamId,
         TeamName: teamName,
@@ -207,7 +207,7 @@ export class AdminService {
     
     
     insertRiderChampionsLeagueTeam(championsLeagueTeamId: any, bikeRiderId: any, year: number): Observable<any> {
-      debugger;
+      
       let clTeamRider = {
         ChampionsLeagueTeamId: championsLeagueTeamId,
         BikeRiderId: bikeRiderId,
@@ -217,7 +217,7 @@ export class AdminService {
     }
     
     updateRiderChampionsLeagueTeam(championsLeagueTeamId: any, origBikeRiderId: any, newBikeRiderId: any, year: number): Observable<any> {
-      debugger;
+      
       let clTeamRider = {
         ChampionsLeagueTeamId: championsLeagueTeamId,
         OrigBikeRiderId: origBikeRiderId,
@@ -248,7 +248,7 @@ export class AdminService {
     }
     
     insertLotteryTeam(teamName: any, color: any, year: number): Observable<any> {
-      debugger;
+      
       let lotteryTeam = {
         LotteryTeamId: -1,
         Name: teamName,
@@ -259,7 +259,7 @@ export class AdminService {
     }
     
     updateLotteryTeam(lotteryTeamId: any, teamName: any, color:any): Observable<any> {
-      debugger;
+      
       let lotteryTeam = {
         LotteryTeamId: lotteryTeamId,
         Name: teamName,
@@ -273,7 +273,7 @@ export class AdminService {
     }
 
     insertRiderLotteryTeam(lotteryTeamId: any, bikeRiderId: any, year: number): Observable<any> {
-      debugger;
+      
       let lotteryTeamRider = {
         LotteryTeamId: lotteryTeamId,
         BikeRiderId: bikeRiderId,
@@ -283,7 +283,7 @@ export class AdminService {
     }
     
     updateRiderLotteryTeam(lotteryTeamId: any, origBikeRiderId: any, newBikeRiderId: any, year: number): Observable<any> {
-      debugger;
+      
       let lotteryTeamRider = {
         LotteryTeamId: lotteryTeamId,
         OrigBikeRiderId: origBikeRiderId,
@@ -313,7 +313,7 @@ export class AdminService {
     }
     
     insertYouthTeam(teamName: any, color: any, year: number): Observable<any> {
-      debugger;
+      
       let youthTeam = {
         YouthTeamId: -1,
         Name: teamName,
@@ -324,7 +324,7 @@ export class AdminService {
     }
     
     updateYouthTeam(youthTeamId: any, teamName: any, color:any): Observable<any> {
-      debugger;
+      
       let youthTeam = {
         YouthTeamId: youthTeamId,
         Name: teamName,
@@ -338,7 +338,7 @@ export class AdminService {
     }
 
     insertRiderYouthTeam(youthTeamId: any, bikeRiderId: any, year: number): Observable<any> {
-      debugger;
+      
       let youthTeamRider = {
         YouthTeamId: youthTeamId,
         BikeRiderId: bikeRiderId,
@@ -348,7 +348,7 @@ export class AdminService {
     }
     
     updateRiderYouthTeam(youthTeamId: any, origBikeRiderId: any, newBikeRiderId: any, year: number): Observable<any> {
-      debugger;
+      
       let youthTeamRider = {
         YouthTeamId: youthTeamId,
         OrigBikeRiderId: origBikeRiderId,

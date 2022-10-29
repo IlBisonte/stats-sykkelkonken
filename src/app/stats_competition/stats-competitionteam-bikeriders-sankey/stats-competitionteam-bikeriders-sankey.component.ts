@@ -25,13 +25,13 @@ export class StatsCompetitionteamBikeridersSankeyComponent implements OnInit {
   
   
   getBikeRacePointsByBikeRiderDetailId(selectedCompTeamId) {
-    debugger;
+    
 
     this.loading.emit(true);
     this.selectedCompTeamId = selectedCompTeamId;
     let year = this.navService.selectedYear;
     this.statsService.getBikeRiderPointsByCompetitionTeam(year, selectedCompTeamId).subscribe((result: any) => { // success path
-      debugger;
+      
       this.loading.emit(false);
       if (result.DataItems) {
         this.heightSankey = result.DataItems.length * 65;
@@ -55,7 +55,7 @@ export class StatsCompetitionteamBikeridersSankeyComponent implements OnInit {
   }
 
   onLinkClick(e) {
-    debugger;
+    
     let target = e.target.connection.target;
     this.linkClicked.emit(target);
   }

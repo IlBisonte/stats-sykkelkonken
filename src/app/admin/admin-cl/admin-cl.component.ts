@@ -23,7 +23,7 @@ export class AdminClComponent implements OnInit {
   constructor(private adminService: AdminService, private loginService: LoginService, private navService: NavService) { }
 
   ngOnInit() {
-    debugger;
+    
     this.getChampionsLeagueTeams();
     this.getBikeRiders();
 
@@ -35,68 +35,68 @@ export class AdminClComponent implements OnInit {
   }
 
   getChampionsLeagueTeams() {
-    debugger;
+    
     this.dataSource = new CustomStore({
       load: (loadOptions) => {
-        debugger;
+        
         return this.adminService.getChampionsLeagueTeams(this.navService.selectedYear).toPromise().catch(error =>  
           this.logOutUser()
         );
       },
       insert: (values) => {
-        debugger;
+        
         let teamName = values.TeamName != null ? values.TeamName : -1;
         let color = values.Color != null ? values.Color : "";
         return this.adminService.insertChampionsLeagueTeam(teamName, color, this.navService.selectedYear).toPromise();
       },
       update: (key, values) => {
-        debugger;
+        
         let teamName = values.TeamName != null ? values.TeamName : key.TeamName;
         let color = values.Color != null ? values.Color : key.Color;
         let championsLeagueTeamId = key.ChampionsLeagueTeamId;
         return this.adminService.updateChampionsLeagueTeam(championsLeagueTeamId, teamName, color).toPromise();
       },
       remove: (key) => {
-        debugger;
+        
         return this.adminService.removeChampionsLeagueTeam(key.ChampionsLeagueTeamId).toPromise();
       }
     });
   }
 
   removeChampionsLeagueTeams() {
-    debugger;
+    
     this.adminService.removeCompetitionTeams().subscribe((result: any) => { // success path
-      debugger;
+      
     }, error => { // error path;        
     });
   }
   
   onSelectionChanged(selectedRow) {
-    debugger;
+    
     this.selectedChampionsLeagueTeamId = selectedRow.selectedRowsData[0].ChampionsLeagueTeamId;
     this.selectedTeamName = selectedRow.selectedRowsData[0].TeamName;
     this.dataSourceTeamRiders = new CustomStore({
       key: "BikeRiderId",
       load: (loadOptions) => {
-        debugger;
+        
         return this.adminService.getRidersToChampionsLeagueTeams(this.selectedChampionsLeagueTeamId).toPromise();
       },
       insert: (values) => {
-        debugger;
+        
         return this.adminService.insertRiderChampionsLeagueTeam(this.selectedChampionsLeagueTeamId, values.BikeRiderId, this.navService.selectedYear).subscribe((result: any) => {
           this.getChampionsLeagueTeams();
           this.dataGridRiders.instance.refresh();
       });
       },
       update: (key, values) => {
-        debugger;
+        
         return this.adminService.updateRiderChampionsLeagueTeam(this.selectedChampionsLeagueTeamId, key, values.BikeRiderId, this.navService.selectedYear).subscribe((result: any) => {
           this.getChampionsLeagueTeams();
           this.dataGridRiders.instance.refresh();
       });
       },
       remove: (key) => {
-        debugger;
+        
         return this.adminService.removeRiderChampionsLeagueTeam(this.selectedChampionsLeagueTeamId, key, this.navService.selectedYear).subscribe((result: any) => {
             this.getChampionsLeagueTeams();
             this.dataGridRiders.instance.refresh();
@@ -106,16 +106,16 @@ export class AdminClComponent implements OnInit {
   }
 
 //   getRidersToTeam(key) {
-//     debugger;
+//     
 //     this.adminService.getRidersToChampionsLeagueTeams(key).subscribe((result: any) => { // success path
-//       debugger;
+//       
 //       return result;
 //     }, error => { // error path;        
 //     });
 // }
 
   getBikeRiders() {
-    debugger;
+    
     // project
     this.bikeRidersDataSource = new CustomStore({
       key: "BikeRiderId",
@@ -141,7 +141,7 @@ export class AdminClComponent implements OnInit {
   }
   
   onGridEditorValueChanged(ea, e) {
-    debugger;
+    
     
     e.setValue(ea.value);
     if (ea.value === null) {
@@ -150,7 +150,7 @@ export class AdminClComponent implements OnInit {
   }
 
   onColorValueChanged(ea, e) {
-    debugger;
+    
     e.setValue(ea.value);
     if (ea.value === null) {
       return;

@@ -10,11 +10,11 @@ import { config } from '../assets/config';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
     constructor(public authService: AuthService, private router: Router, private injector: Injector, private http: HttpClient) {
-        debugger;
+        
      }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
+        debugger;
         // add authorization header with jwt token if available
         let currentUser;
         if (this.authService) {
@@ -29,7 +29,7 @@ export class JwtInterceptor implements HttpInterceptor {
         }
 
         return next.handle(request).pipe(catchError(error => {
-            debugger;
+            
             if (error instanceof HttpErrorResponse && error.status === 401) {
                 return this.handle401Error(request, next);
                 // if (this.authService) {
@@ -59,12 +59,14 @@ export class JwtInterceptor implements HttpInterceptor {
     private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
     private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+        debugger;
         if (!this.isRefreshing) {
             this.isRefreshing = true;
             this.refreshTokenSubject.next(null);
 
             return this.refreshToken().pipe(
             switchMap((token: any) => {
+                debugger;
                 this.isRefreshing = false;
                 this.refreshTokenSubject.next(token.Token);
                 return next.handle(this.addToken(request, token.Token));
@@ -84,7 +86,11 @@ export class JwtInterceptor implements HttpInterceptor {
         debugger;
         let token = this.getToken();
         let refreshToken = this.getRefreshToken();
-        return this.http.get<any>(config.serviceUrl + `/api/Login/Refresh?token=${token}&refreshToken=${refreshToken}`).pipe(tap((tokens: any) => {
+        let vmRefreshToken = {
+            Token: token,
+            RefreshToken: refreshToken
+        }
+        return this.http.post<any>(config.serviceUrl + `/api/Login/Refresh`, vmRefreshToken).pipe(tap((tokens: any) => {
             this.storeJwtToken(tokens.Token, tokens.RefreshToken);
         }));
 

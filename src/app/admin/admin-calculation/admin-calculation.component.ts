@@ -52,7 +52,7 @@ export class AdminCalculationComponent implements OnInit {
 
   getBikeRaces() {
     // this.adminService.getBikeRacesToCalculate().subscribe((result: any) => {
-    //   debugger;
+    //   
     //   this.bikeRaceDataSource = result;
     // }, error => { // error path;        
     // });
@@ -60,13 +60,13 @@ export class AdminCalculationComponent implements OnInit {
     
     this.bikeRaceDataSource = new DataSource({
       load: (loadOptions) => {
-        debugger;
+        
         return this.adminService.getBikeRacesToCalculate(this.navService.selectedYear, this.isAdmin).toPromise().catch(error =>  
           this.logOutUser()
         );
       },
       update: (key, values) => {
-        debugger;
+        
         var bikeRace = {
           BikeRaceDetailId: key.BikeRaceDetailId,
           BikeRaceId: key.BikeRaceId,
@@ -90,7 +90,7 @@ export class AdminCalculationComponent implements OnInit {
         );
       },
       insert: (values) => {
-        debugger;
+        
         // values.SelectedDate = this.selectedDate;
         // values.EmployeeId = this.selectedEmployeeId;
         let startDate = moment(values.StartDateToddMMM);
@@ -103,7 +103,7 @@ export class AdminCalculationComponent implements OnInit {
         );
       }, 
       remove: (key) => {
-        debugger;
+        
         return this.adminService.deleteBikeRaceDetail(key.BikeRaceDetailId).toPromise().catch(error =>  
           this.logOutUser()
         );
@@ -112,7 +112,7 @@ export class AdminCalculationComponent implements OnInit {
   }
 
   onSelectionChanged(selectedRow, results: HTMLElement) {
-    debugger;
+    
     if (window.innerWidth < 800) {
       results.scrollIntoView();
     }
@@ -125,13 +125,13 @@ export class AdminCalculationComponent implements OnInit {
     this.bikeRaceResultsDataSource = new CustomStore({
       key: "Position",
       load: (loadOptions) => {
-        debugger;
+        
         return this.adminService.getResultsToBikeRace(this.selectedBikeRaceDetailId).toPromise().catch(error =>  
           this.logOutUser()
         );
       },
       update: (key, values) => {
-        debugger;
+        
         let bikeRiderId = values.BikeRiderId != null ? values.BikeRiderId : -1;
         let position = key;
         return this.adminService.updateBikeRaceResult(this.selectedBikeRaceDetailId, bikeRiderId, position).toPromise().catch(error =>  
@@ -143,13 +143,13 @@ export class AdminCalculationComponent implements OnInit {
 
     this.stageResultsDataSource = new CustomStore({
       load: (loadOptions) => {
-        debugger;
+        
         return this.adminService.getStageResultsToBikeRace(this.selectedBikeRaceDetailId).toPromise().catch(error =>  
           this.logOutUser()
         );
       },
       update: (key, values) => {
-        debugger;
+        
         let bikeRiderId = values.BikeRiderId;
         return this.adminService.updateStageResultToBikeRace(this.selectedBikeRaceDetailId, key.StageNo, key.StagePosition, bikeRiderId).toPromise().catch(error =>  
           this.logOutUser()
@@ -158,7 +158,7 @@ export class AdminCalculationComponent implements OnInit {
     });
   
     // this.adminService.getStageResultsToBikeRace(this.selectedBikeRaceId).subscribe((result: any) => {
-    //   debugger;
+    //   
     //   this.stageResultsDataSource = result;
     // }, error => {
     // });
@@ -167,13 +167,13 @@ export class AdminCalculationComponent implements OnInit {
     this.leaderJerseyDataSource = new CustomStore({
       // key: this.keyExprLeaderJersey,
       load: (loadOptions) => {
-        debugger;
+        
         return this.adminService.getLeaderJerseyResultsToBikeRace(this.selectedBikeRaceDetailId).toPromise().catch(error =>  
           this.logOutUser()
         );
       },
       update: (key, values) => {
-        debugger;
+        
         let bikeRiderId = values.BikeRiderId;
         return this.adminService.updateLeaderJerseyResult(this.selectedBikeRaceDetailId, bikeRiderId, key.LeaderJerseyId, key.LeaderJerseyPosition).toPromise().catch(error =>  
           this.logOutUser()
@@ -184,7 +184,7 @@ export class AdminCalculationComponent implements OnInit {
 
 
   getBikeRiders() {
-    debugger;
+    
     // project
     this.bikeRidersDataSource = new CustomStore({
       key: "BikeRiderId",
@@ -216,7 +216,7 @@ export class AdminCalculationComponent implements OnInit {
   }
 
   onGridEditorValueChanged(ea, e) {
-    debugger;
+    
     
     e.setValue(ea.value);
     if (ea.value === null) {
@@ -225,7 +225,7 @@ export class AdminCalculationComponent implements OnInit {
   }
 
   onStageResultChanged(e, stageNo, stagePosition) {
-    debugger;
+    
     if (e.value != -1) {
       this.adminService.updateStageResultToBikeRace(this.selectedBikeRaceDetailId, stageNo, stagePosition, e.value).toPromise().catch(error =>  
         this.logOutUser()
@@ -234,7 +234,7 @@ export class AdminCalculationComponent implements OnInit {
   }
 
   onRowUpdated(e) {
-    debugger;
+    
     var grid = e.component;
   }
 
@@ -249,7 +249,7 @@ export class AdminCalculationComponent implements OnInit {
   }
 
   onRowPrepared(e) {
-    debugger;
+    
     if (e.rowType === "data") {
       if (e.data.IsCalculated) {
         e.rowElement.style.background = "#42C436";
@@ -259,7 +259,7 @@ export class AdminCalculationComponent implements OnInit {
   }
 
   createTabs() {
-    debugger;
+    
     if (this.selectedBikeRaceIsStageRace) {
       if (this.selectedBikeRaceCategoryId == 4 || this.selectedBikeRaceCategoryId == 5) {
         this.tabs = [
@@ -301,7 +301,7 @@ export class AdminCalculationComponent implements OnInit {
   }
 
   selectTab(e) {
-    debugger;
+    
     this.selectedTabIndex = e.itemData.id;
   }
   
@@ -312,7 +312,7 @@ export class AdminCalculationComponent implements OnInit {
   
 
   onStartDateChanged(e, cell) {
-    debugger;
+    
     cell.data.StartDate = e.value;
     // let dt = moment(e.value);
     // var nb = moment(dt).locale('nb');
@@ -332,7 +332,7 @@ export class AdminCalculationComponent implements OnInit {
   }
 
   onFinishDateChanged(e, cell) {
-    debugger;
+    
     cell.data.FinishDate = e.value;
     cell.setValue(e.value);
   }

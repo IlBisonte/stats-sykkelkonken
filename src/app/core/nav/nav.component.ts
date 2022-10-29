@@ -59,7 +59,7 @@ export class NavComponent implements OnInit {
   buttonOptions: any;
 
   constructor(public router: Router, private zone: NgZone, private loginService: LoginService, private navService: NavService) {
-    debugger;
+    
     this.showSubmenuModes = [{
       name: "onHover",
       delay: { show: 0, hide: 500 }
@@ -69,7 +69,7 @@ export class NavComponent implements OnInit {
     }];
     this.showFirstSubmenuModes = this.showSubmenuModes[0];
     this.showNavigationInfo = true;
-    debugger;
+    
     this.years = [];
     for (let i = 2019; i <= new Date().getFullYear(); i++) {
       this.years.push(i);
@@ -122,12 +122,12 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
+    
   }
   itemClick(data) {
     let item = data.itemData;
     if (item.module) {
-      debugger;
+      
       this.sidebarwidthChanged.emit(0);
       this.selectedMenuText = item.moduleName;
       if (item.url !== null && item.url !== undefined) {
@@ -152,7 +152,7 @@ export class NavComponent implements OnInit {
   }
 
   userItemClick(data) {
-    debugger;
+    
     let item = data.itemData;
 
     if (item.module == '/logout') {
@@ -163,7 +163,7 @@ export class NavComponent implements OnInit {
   }
 
   initNav(valid: boolean) {
-    debugger;
+    
     let year = moment().year();
     // this.version = this.configService.version.directVersion;
     this.isValid = valid;
@@ -260,7 +260,7 @@ export class NavComponent implements OnInit {
       menu.items.push(itemBikeRiderStats);
       this.mainMenuItems.push(menu);
 
-      debugger;
+      
       menu = new NavMenu();
       menu.moduleName = "Statistikk Sykkelkonken";
       menu.items = new Array<NavMenu>();
@@ -386,7 +386,7 @@ export class NavComponent implements OnInit {
   }
 
   onLogoutClicked(e) {
-    debugger;
+    
     this.loginService.logout();
     location.reload();
   }

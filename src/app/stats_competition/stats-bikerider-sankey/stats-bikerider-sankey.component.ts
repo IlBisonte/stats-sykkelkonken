@@ -27,7 +27,7 @@ export class StatsBikeriderSankeyComponent implements OnInit {
     this.selectedCompTeamId = selectedCompTeamId;
     this.loading.emit(true);
     this.resultsService.getCompetitionTeamBikeRiderResults(selectedCompTeamId).subscribe((result: any) => { // success path
-      debugger;
+      
       this.loading.emit(false);
       this.bikeRiders = result;
       if (this.bikeRiders) {
@@ -39,11 +39,11 @@ export class StatsBikeriderSankeyComponent implements OnInit {
   }
   
   getBikeRacePointsByBikeRiderDetailId() {
-    debugger;
+    
     this.loading.emit(true);
     let year = this.navService.selectedYear;
     this.statsService.getBikeRacePointsByBikeRiderDetailId(year, this.selectedBikeRiderDetailId).subscribe((result: any) => { // success path
-      debugger;
+      
       this.loading.emit(false);
       if (result.DataItems) {
         this.prepareChartBikeRider(result);
@@ -66,7 +66,7 @@ export class StatsBikeriderSankeyComponent implements OnInit {
   }
   
   onBikeRiderIdChanged(e) {
-    debugger;
+    
     this.getBikeRacePointsByBikeRiderDetailId();
   }
 

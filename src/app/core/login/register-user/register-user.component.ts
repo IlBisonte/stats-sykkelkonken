@@ -14,19 +14,19 @@ export class RegisterUserComponent implements OnInit {
   errorMessage: string;
 
   constructor(private loginService: LoginService) {
-    debugger;
+    
    }
 
   ngOnInit() {
-    debugger;
+    
   }
 
   signupClicked() {
-    debugger;
+    
     this.errorMessage = "";
     if (this.password === this.repeatPassword) {
       this.loginService.signup(this.username, this.password).subscribe((result: any) => {
-        debugger; 
+         
       }, error => { // error path;        
       });
     }

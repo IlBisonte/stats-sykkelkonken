@@ -45,7 +45,7 @@ export class LoginService {
     }
 
     signup(username: string, password: string): Observable<any> {
-      debugger;
+      
       var user = {
           UserName: username,
           Password: password
@@ -61,7 +61,7 @@ export class LoginService {
     
 
   private loginData(result: any) {
-    debugger;
+    
     // store user details and jwt token in local storage to keep user logged in between page refreshes
     localStorage.setItem('currentUser', JSON.stringify(result));
     this.currentUserSubject.next(result);

@@ -47,13 +47,11 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    debugger;
       this.navComponent.initNav(true);
       this.navVisible = true;
   }
 
   onActivate(component) {
-    debugger;
     if (component.router && component.router.url === '/results') {
       this.navComponent.initNav(false);
       this.navVisible = false;
@@ -69,21 +67,21 @@ export class AppComponent implements OnInit, OnDestroy {
       this.sidebarwidth = 250;
     }
     else if (e.target.className.indexOf("dx-menu-items-container") > -1) {
-      debugger;
+      
       this.sidebarwidth = 250;
     }
     else if ((e.target.tagName.indexOf("SPAN") > -1 || e.target.tagName.indexOf("SPAN") > -1) && (e.target.className.indexOf("menubtn") > -1 || e.target.className.indexOf("selectedMenu") > -1)) {
-      debugger;
+      
       this.sidebarwidth = this.sidebarwidth == 0 ? 250 : 0;
     }
     else {
-      debugger;
+      
       this.sidebarwidth = 0;
     }
   }
 
   onSideBarWidthChanged(width: number) {
-    debugger;
+    
     this.sidebarwidth = width;
   }
 

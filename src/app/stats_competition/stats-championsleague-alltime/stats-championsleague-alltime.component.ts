@@ -21,9 +21,9 @@ export class StatsChampionsleagueAlltimeComponent implements OnInit {
   }
 
   getCompetitionTeamScore() {
-    debugger;
+    
     this.statsService.getCLTeamStatsAllTime().subscribe((result: any) => { // success path
-      debugger;
+      
       this.dataSource = result;
     }, error => { // error path;        
     });

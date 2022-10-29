@@ -26,7 +26,7 @@ export class AdminSeasonplacementComponent implements OnInit {
     this.loadingVisible = true;
     let year = this.navService.selectedYear;
     this.adminService.getBikeRacesToCalculate(this.navService.selectedYear, false).subscribe((result: any) => {
-      debugger;
+      
       this.loadingVisible = false;
       this.bikeRaces = result;
       this.getBikeRaceSeasonPlacement();
@@ -40,11 +40,11 @@ export class AdminSeasonplacementComponent implements OnInit {
     this.loadingVisible = true;
     let year = this.navService.selectedYear;
     this.adminService.getBikeRaceSeasonPlacement(this.navService.selectedYear).subscribe((result: any) => {
-      debugger;
+      
       this.loadingVisible = false;
       this.selectedBikeRaces = [];
       result.forEach(sp => {
-        debugger;
+        
         this.selectedBikeRaces.push(sp.BikeRaceDetailId);
       });
     }, error => { // error path;   
@@ -53,11 +53,11 @@ export class AdminSeasonplacementComponent implements OnInit {
   }
 
   onSelectedBikeRacesChanged(e) {
-    debugger;
+    
     if (this.updateBikeRaces) {
       this.loadingVisible = true;
       this.adminService.updateBikeRaceSeasonPlacement(this.navService.selectedYear, this.selectedBikeRaces).subscribe((result: any) => {
-        debugger;
+        
         this.loadingVisible = false;
       }, error => { // error path;   
         this.loadingVisible = false;     

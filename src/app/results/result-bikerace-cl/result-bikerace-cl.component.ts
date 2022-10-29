@@ -48,10 +48,10 @@ export class ResultBikeraceClComponent implements OnInit {
   
 
   getBikeRaces() {
-    debugger;
+    
     this.loadingVisible = true;
     this.resultsService.getBikeRaces(this.navService.selectedYear).subscribe((result: any) => {
-      debugger;
+      
       this.loadingVisible = false;
       this.bikeRaceDataSource = result;
     }, error => { // error path;        
@@ -59,7 +59,7 @@ export class ResultBikeraceClComponent implements OnInit {
   }
 
   onSelectionChanged(selectedRow, results: HTMLElement) {
-    debugger;
+    
     if (window.innerWidth < 800) {
       results.scrollIntoView();
     }
@@ -75,7 +75,7 @@ export class ResultBikeraceClComponent implements OnInit {
     this.selectedBikeRaceName = selectedRow.selectedRowsData[0].Name;
     
     this.resultsService.getBikeRaceCLTeamResults(this.selectedBikeRaceId, this.navService.selectedYear).subscribe((result: any) => {
-      debugger;
+      
       this.loadingVisible = false;
       this.totalResultsDataSource = result.TotalResults;
       this.gcResultsDataSource = result.GCResults;
@@ -135,13 +135,13 @@ export class ResultBikeraceClComponent implements OnInit {
   }
 
   selectTab(e) {
-    debugger;
+    
     this.selectedTabIndex = e.itemData.id;
   }
   
 
   onRowPrepared(e) {
-    debugger;
+    
     if (e.rowType === "data") {
       if (e.data.Position === 1 && this.selectedBikeRaceName.indexOf("Italia") > 0) {
         e.rowElement.style.background = "#E7527F";

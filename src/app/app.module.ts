@@ -46,7 +46,7 @@ import { AdminYouthComponent } from './admin/admin-youth/admin-youth.component';
 // import { RegisterUserComponent } from './login/register-user/register-user.component';
 
 export function appInit(configService: ConfigService) {
-  debugger;
+  
   return () => configService.load();
 }
 

@@ -25,7 +25,7 @@ export class AdminLotteryComponent implements OnInit {
   constructor(private adminService: AdminService, private loginService: LoginService, private navService: NavService) { }
 
   ngOnInit() {
-    debugger;
+    
     this.getLotteryTeams();
     this.getBikeRiders();
 
@@ -37,62 +37,62 @@ export class AdminLotteryComponent implements OnInit {
   }
 
   getLotteryTeams() {
-    debugger;
+    
     this.dataSource = new CustomStore({
       load: (loadOptions) => {
-        debugger;
+        
         return this.adminService.getLotteryTeams(this.navService.selectedYear).toPromise().catch(error =>  
           this.logOutUser()
         );
       },
       insert: (values) => {
-        debugger;
+        
         let name = values.Name != null ? values.Name : -1;
         let color = values.Color != null ? values.Color : "";
         return this.adminService.insertLotteryTeam(name, color, this.navService.selectedYear).toPromise();
       },
       update: (key, values) => {
-        debugger;
+        
         let name = values.Name != null ? values.Name : key.Name;
         let color = values.Color != null ? values.Color : key.Color;
         let lotteryTeamId = key.LotteryTeamId;
         return this.adminService.updateLotteryTeam(lotteryTeamId, name, color).toPromise();
       },
       remove: (key) => {
-        debugger;
+        
         return this.adminService.removeLotteryTeam(key.LotteryTeamId).toPromise();
       }
     });
   }
   
   onSelectionChanged(selectedRow) {
-    debugger;
+    
     this.selectedLotteryTeamId = selectedRow.selectedRowsData[0].LotteryTeamId;
     this.selectedName = selectedRow.selectedRowsData[0].Name;
     this.dataSourceTeamRiders = new CustomStore({
       key: "BikeRiderId",
       load: (loadOptions) => {
-        debugger;
+        
           return this.adminService.getRidersToLotteryTeam(this.selectedLotteryTeamId).toPromise();
       },
       insert: (values) => {
-        debugger;
+        
         return this.adminService.insertRiderLotteryTeam(this.selectedLotteryTeamId, values.BikeRiderId, this.navService.selectedYear).subscribe((result: any) => {
-          debugger;
+          
           this.getLotteryTeams();
           this.dataGridRiders.instance.refresh();
       });
       },
       update: (key, values) => {
-        debugger;
+        
         return this.adminService.updateRiderLotteryTeam(this.selectedLotteryTeamId, key, values.BikeRiderId, this.navService.selectedYear).subscribe((result: any) => {
-          debugger;
+          
           this.getLotteryTeams();
           this.dataGridRiders.instance.refresh();
       });
       },
       remove: (key) => {
-        debugger;
+        
         return this.adminService.removeRiderLotteryTeam(this.selectedLotteryTeamId, key, this.navService.selectedYear).subscribe((result: any) => {
           this.getLotteryTeams();
           this.dataGridRiders.instance.refresh();
@@ -102,7 +102,7 @@ export class AdminLotteryComponent implements OnInit {
   }
 
   getBikeRiders() {
-    debugger;
+    
     // project
     this.bikeRidersDataSource = new CustomStore({
       key: "BikeRiderId",
@@ -128,7 +128,7 @@ export class AdminLotteryComponent implements OnInit {
   }
   
   onGridEditorValueChanged(ea, e) {
-    debugger;
+    
     
     e.setValue(ea.value);
     if (ea.value === null) {
@@ -137,7 +137,7 @@ export class AdminLotteryComponent implements OnInit {
   }
 
   onColorValueChanged(ea, e) {
-    debugger;
+    
     e.setValue(ea.value);
     if (ea.value === null) {
       return;

@@ -21,9 +21,9 @@ export class StatsBikeriderscoretotalComponent implements OnInit {
   }
 
   getBikeRiderTotalScore() {
-    debugger;
+    
     this.statsService.getBikeRiderTotalScore().subscribe((result: any) => { // success path
-      debugger;
+      
       this.dataSourceBikeRider = result;
     }, error => { // error path;        
     });

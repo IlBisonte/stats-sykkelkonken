@@ -25,22 +25,22 @@ export class StatsService {
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
     getBikeRiderStats(year: number): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/Stats/GetBikeRiderStats?year=" + year);
     }
     
     getBikeRiderResults(bikeRiderDetailId: number, year: number): Observable<any> {
-        debugger;
+        
         return this.http.get<any>(this.configService.config.serviceUrl + "/api/Result/GetBikeRiderResults?bikeRiderDetailId=" + bikeRiderDetailId + "&year=" + year);
     }
 
     getBikeRiderTotalScore(): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/Stats/GetBikeRiderScoreAllTime");
     }
 
     getCompTeamsWithSelectedBikeRider(bikeRiderDetailId: number): Observable<any> {
-      debugger;
+      
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/Stats/GetCompTeamsWithSelectedBikeRider?bikeRiderDetailId=" + bikeRiderDetailId);
     }
 

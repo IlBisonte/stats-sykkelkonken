@@ -37,10 +37,10 @@ export class StatsComponent implements OnInit {
   }
 
   getBikeRiderStats() {
-    debugger;
+    
     this.loadingVisible = true;
     this.statsService.getBikeRiderStats(this.navService.selectedYear).subscribe((result: any) => { // success path
-      debugger;
+      
       this.loadingVisible = false;
       this.dataSourceRiderStats = result;
     }, error => { // error path;        
@@ -48,7 +48,7 @@ export class StatsComponent implements OnInit {
   }
 
   bikeRiderClicked(e, results: HTMLElement) {
-    debugger;
+    
     if (window.innerWidth < 800) {
       results.scrollIntoView();
     }
@@ -57,30 +57,30 @@ export class StatsComponent implements OnInit {
     this.bikeRiderResultComponent.showResultsToBikeRider(this.selectedBikeRiderDetailId);
     this.statsBikeriderSankeyComponent.onBikeRiderDetailIdSelected(this.selectedBikeRiderDetailId);
     // this.statsService.getBikeRiderResults(e.key).subscribe((result: any) => {
-    //   debugger;
+    //   
     //   this.dataSourceBikeRiderResults = result;
     // }, error => { // error path;        
     // });
   }
 
   customSortingFunctionSelectedBy (rowData) {
-    debugger;
+    
     return rowData.NoOfSelections;
   }
   
   customSortingFunctionRiderIndex (rowData) {
-    debugger;
+    
     return rowData.RiderIndex;
   }
   
   customSortingFunctionBikeRace (rowData) {
-    debugger;
+    
     return rowData.StartDate;
   }
 
   onCellPrepared(e){
     if(e.rowType === "data" && e.column.dataField === "CLTeamName") {
-      debugger;
+      
       e.cellElement.style.backgroundColor = e.data.Color;
       e.cellElement.innerText = "";
       e.cellElement.title = e.data.CLTeamName != null ? e.data.CLTeamName : "Ikke valgt i CL";
@@ -89,7 +89,7 @@ export class StatsComponent implements OnInit {
 
 
   calculateSummary(options) {
-    debugger;
+    
     // Calculating "customSummary1"
     if(options.name == "customSumTotalPoints") {
         switch(options.summaryProcess) {

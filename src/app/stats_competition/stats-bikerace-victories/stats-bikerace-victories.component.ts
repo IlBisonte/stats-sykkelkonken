@@ -20,11 +20,11 @@ export class StatsBikeraceVictoriesComponent implements OnInit {
   }
 
   getCompetitionTeamScore() {
-    debugger;
+    
     this.loadingVisible = true;
     let year = this.navService.selectedYear;
     this.statsService.getNoOfVictoriesCompTeams(year).subscribe((result: any) => { // success path
-      debugger;
+      
       this.loadingVisible = false;
       this.dataSource = result;
     }, error => { // error path;        

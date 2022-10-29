@@ -21,9 +21,9 @@ export class StatsCompetitionteamAlltimeComponent implements OnInit {
   }
 
   getCompetitionTeamScore() {
-    debugger;
+    
     this.statsService.getCompetitionTeamStatsAllTime().subscribe((result: any) => { // success path
-      debugger;
+      
       this.dataSourceCompetitionTeamStats = result;
     }, error => { // error path;        
     });

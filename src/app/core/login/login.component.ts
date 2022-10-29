@@ -36,9 +36,9 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(this.username, this.password)
       .subscribe((result: any) => { // success path
-        debugger;
+        
         this.loadPanelVisible = false;
-        debugger;
+        
         if (!result.IsLoggedIn) {
           this.message = "Feil brukernavn eller passord";
         } else {

@@ -40,23 +40,23 @@ export class ResultYouthComponent implements OnInit {
     this.getYouthTeams();
   }
   getYouthTeams() {
-    debugger;
+    
     this.resultsService.getYouthTeamResults(this.navService.selectedYear).subscribe((result: any) => { // success path
-      debugger;
+      
       this.dataSourceYouthTeams = result;
     }, error => { // error path;        
     });
   }
   
   youthTeamClicked(e, riders: HTMLElement) {
-    debugger;
+    
     if (window.innerWidth < 800) {
     riders.scrollIntoView();
     }
     this.selectedCompetitionTeamId = e.key;
     this.selectedYouthTeamName = e.data.Name;
     this.resultsService.getYouthTeamBikeRiderResults(e.key).subscribe((result: any) => {
-      debugger;
+      
       this.dataSourceBikeRiders = result;
       this.statsCompetitionteamBikeridersSankeyComponent.getBikeRacePointsByBikeRiderDetailId(this.selectedCompetitionTeamId);
     }, error => { // error path;        
@@ -64,7 +64,7 @@ export class ResultYouthComponent implements OnInit {
   }
   
   bikeRiderClicked(e, apiTabs: HTMLElement) {
-    debugger;
+    
     if (window.innerWidth < 800) {
     apiTabs.scrollIntoView();
     }
@@ -74,7 +74,7 @@ export class ResultYouthComponent implements OnInit {
   }
 
   onRowPrepared(e) {
-    debugger;
+    
     if (e.rowType === "data") {
       if (e.data.Position === 1) {
         e.rowElement.style.background = "#F8DD52";
@@ -88,16 +88,16 @@ export class ResultYouthComponent implements OnInit {
   }
 
   sortBikeRaceName(e) {
-    debugger;
+    
     return "";
   }
   customSortingFunction (rowData) {
-    debugger;
+    
     return rowData.StartDate;
   }
 
   calculateSummary(options) {
-    debugger;
+    
     // Calculating "customSummary1"
     if(options.name == "customSumTotalPoints") {
         switch(options.summaryProcess) {
