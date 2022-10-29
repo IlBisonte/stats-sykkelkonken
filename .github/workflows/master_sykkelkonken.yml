@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'sykkelkonken'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_920D6145704D46E98D42526D08CC184A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A2A3939822DC4102853A91A63348AE85 }}
           package: .
