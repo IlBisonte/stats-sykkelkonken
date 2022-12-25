@@ -119,7 +119,7 @@ export class AdminService {
 
 
     getBikeRiderById(id: any): Observable<any> {
-      return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerider/get/" + id);
+      return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerider/get?id=" + id);
     }
 
     updateBikeRaceResult(bikeRaceDetailId: any, bikeRiderId: any, position: any): Observable<any> {
@@ -147,7 +147,7 @@ export class AdminService {
     }
 
     getBikeRidersBySearchTextByYear(searchText, year: number): Observable<any> {
-      return this.http.get<any>(this.configService.config.serviceUrl + '/api/bikerider/getbysearchtext?searchtext=' + searchText + '&year=' + year);
+      return this.http.get<any>(this.configService.config.serviceUrl + '/api/bikerider/GetBySearchTextAndYear?searchtext=' + searchText + '&year=' + year);
     }
 
     getLeaderJerseyResultsToBikeRace(bikeRaceDetailId: number): Observable<any> {

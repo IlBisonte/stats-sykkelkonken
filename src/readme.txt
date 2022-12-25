@@ -34,3 +34,13 @@ serviceurl finnes i config.json
 
 
 ved deploy til azure, slett web.config fra assets folder og legg inn på root
+deploy fra dist catalog
+add to web.config i <system.webServer>:
+<staticContent>
+    <remove fileExtension=".json" />
+    <remove fileExtension=".woff" />
+    <remove fileExtension=".woff2" />
+    <mimeMap fileExtension=".json" mimeType="application/json" />
+    <mimeMap fileExtension=".woff" mimeType="application/font-woff" />
+    <mimeMap fileExtension=".woff2" mimeType="application/font-woff" />      
+</staticContent>

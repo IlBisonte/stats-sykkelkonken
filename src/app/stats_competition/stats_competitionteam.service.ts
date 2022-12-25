@@ -77,7 +77,7 @@ export class StatsCompetitionTeamService {
     }
 
     getBikeRacePointsByBikeRiderDetailId(year: number, bikeRiderDetailId: number) {
-      return this.http.get<any>(this.configService.config.serviceUrl + "/api/StatsCompetitionteam/GetBikeRacePointsByBikeRider?year=" + year + "&bikeRiderDetailId=" + bikeRiderDetailId);
+      return this.http.get<any>(this.configService.config.serviceUrl + "/api/StatsCompetitionteam/GetBikeRacePointsByBikeRiderDetailId?year=" + year + "&bikeRiderDetailId=" + bikeRiderDetailId);
     }
 
     getBikeRiderPointsByCompetitionTeam(year: number, competitionTeamId: number) {

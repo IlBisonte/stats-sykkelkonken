@@ -90,7 +90,7 @@ export class AdminCalculationComponent implements OnInit {
         );
       },
       insert: (values) => {
-        
+        debugger;
         // values.SelectedDate = this.selectedDate;
         // values.EmployeeId = this.selectedEmployeeId;
         let startDate = moment(values.StartDateToddMMM);
@@ -201,9 +201,10 @@ export class AdminCalculationComponent implements OnInit {
 
         }
         else {
-          return this.adminService.getBikeRidersBySearchTextByYear("", this.navService.selectedYear).toPromise().catch(error =>  
-            this.logOutUser()
-          );
+          return [{BikeRiderId: -1, BikeRiderName: " "}];
+          // return this.adminService.getBikeRidersBySearchTextByYear("", this.navService.selectedYear).toPromise().catch(error =>  
+          //   this.logOutUser()
+          // );
           //return "";
         }
       },
