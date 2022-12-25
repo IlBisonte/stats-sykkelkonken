@@ -24,8 +24,7 @@ export class AdminSeasonplacementComponent implements OnInit {
   getBikeRaces() {
     
     this.loadingVisible = true;
-    let year = this.navService.selectedYear;
-    this.adminService.getBikeRacesToCalculate(this.navService.selectedYear, false).subscribe((result: any) => {
+    this.adminService.getBikeRacesToCalculate_adminSeasonplacement(this.navService.selectedYear).subscribe((result: any) => {
       
       this.loadingVisible = false;
       this.bikeRaces = result;
@@ -38,7 +37,6 @@ export class AdminSeasonplacementComponent implements OnInit {
   getBikeRaceSeasonPlacement() {
     
     this.loadingVisible = true;
-    let year = this.navService.selectedYear;
     this.adminService.getBikeRaceSeasonPlacement(this.navService.selectedYear).subscribe((result: any) => {
       
       this.loadingVisible = false;

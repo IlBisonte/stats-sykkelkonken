@@ -61,7 +61,7 @@ export class AdminCalculationComponent implements OnInit {
     this.bikeRaceDataSource = new DataSource({
       load: (loadOptions) => {
         
-        return this.adminService.getBikeRacesToCalculate(this.navService.selectedYear, this.isAdmin).toPromise().catch(error =>  
+        return this.adminService.getBikeRacesToCalculate_adminCalculation(this.navService.selectedYear, this.isAdmin).toPromise().catch(error =>  
           this.logOutUser()
         );
       },

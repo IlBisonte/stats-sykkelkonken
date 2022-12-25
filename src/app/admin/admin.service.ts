@@ -50,6 +50,16 @@ export class AdminService {
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerace/Get?year=" + year + "&showCancelled=" + showCancelled);
     }
 
+    getBikeRacesToCalculate_adminCalculation(year: number, showCancelled: boolean): Observable<any> {
+      
+      return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerace/GetBikeRacesToCalculate_AdminCalculation?year=" + year + "&showCancelled=" + showCancelled);
+    }
+
+    getBikeRacesToCalculate_adminSeasonplacement(year: number): Observable<any> {
+      
+      return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerace/GetBikeRacesToCalculate_AdminSeasonplacement?year=" + year);
+    }
+
     getBikeRaceSeasonPlacement(year: number): Observable<any> {
       
       return this.http.get<any>(this.configService.config.serviceUrl + "/api/bikerace/GetBikeRaceSeasonPlacement?year=" + year);
